@@ -36,23 +36,23 @@ public class LoginController {
 
     @FXML
     private void LoginButtonAction(ActionEvent event) throws IOException {
-        String username = UserLogin.getText();
-        String password = KodeLogin.getText();
+        String Brugernavn = UserLogin.getText();
+        String Kodeord = KodeLogin.getText();
         //String password = "Wentzel";
-        String hashedPassword = hashPassword(password);
+        String hashedPassword = hashPassword(Kodeord);
 
         try {
             Connection connection = mysqlConnection.getConnection();
 
             // Check if the entered user credentials are correct
-            if (isValidUser(username, password, connection)) {
+            if (isValidUser(Brugernavn, Kodeord, connection)) {
 
                 System.out.println("Det Virker!");
                 App m = new App();
                 m.changeScene("StartSide.fxml");
 
             } else {
-                System.out.println("Invalid username or password");
+                System.out.println("Invalid Brugernavn or password");
                 // Show an error message or handle failed login
             }
         } catch (SQLException e) {
@@ -63,16 +63,16 @@ public class LoginController {
         }
     }
 
-    private boolean isValidUser(String username, String password, Connection connection) throws SQLException {
-        System.out.println("Checking user credentials: " + username + password);
+    private boolean isValidUser(String Brugernavn, String Kodeord, Connection connection) throws SQLException {
+        System.out.println("Checking user credentials: " + Brugernavn + Kodeord);
 
-        String sql = "SELECT password FROM user WHERE username = ?";
+        String sql = "SELECT Kodeord FROM Kunde WHERE Brugernavn = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, username);
+            pstmt.setString(1, Brugernavn);
             ResultSet resultSet = pstmt.executeQuery();
             if (resultSet.next()) {
-                String hashedPassword = resultSet.getString("password");
-                return verifyPassword(password, hashedPassword);
+                String hashedPassword = resultSet.getString("Kodeord");
+                return verifyPassword(Kodeord, hashedPassword);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,8 +86,8 @@ public class LoginController {
     }
 
     // Method to verify a password against its hash
-    public static boolean verifyPassword(String password, String hashedPassword) {
-        return BCrypt.checkpw(password, hashedPassword);
+    public static boolean verifyPassword(String Kodeord, String hashedPassword) {
+        return BCrypt.checkpw(Kodeord, hashedPassword);
     }
 
 }

@@ -14,9 +14,9 @@ public class MySqlConnection {
 
     public Connection getConnection() {
         // Update the connection URL, username, and password according to your MySQL setup
-        String url = "jdbc:mysql://localhost/WeaselGambling";
-        String user = "root";
-        String password = "";
+        String url = "jdbc:mysql://mysql63.unoeuro.com:3306/wentzelevent_dk_db_Frisoer";
+        String user = "wentzelevent_dk";
+        String password = "pBHeRyFdzc4G";
 
         try {
             connection = DriverManager.getConnection(url, user, password);
