@@ -21,7 +21,7 @@
                   <Image url="@Images/sample-logo-white.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til WeaselBet" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Monika Frisør" />
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="537.0" style="-fx-background-color: #212121;">
