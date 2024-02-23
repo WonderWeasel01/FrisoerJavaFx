@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.TilmeldController">
    <children>
@@ -42,6 +42,29 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
+                              <Image url="@Images/Profile.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <TextField fx:id="NavnTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
                               <Image url="@Images/Message.png" />
                            </image>
                            <HBox.margin>
@@ -65,13 +88,13 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/Message.png" />
+                              <Image url="@Images/Call.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <TextField fx:id="NavnTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                        <TextField fx:id="MailTilmeld1" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -88,7 +111,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/Password1.png" />
+                              <Image url="@Images/Unlock.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
@@ -101,6 +124,16 @@
                         </PasswordField>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="289.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Mand" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
+                     </children>
+                  </HBox>
                   <Button fx:id="Login" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -109,7 +142,7 @@
                   <HBox alignment="CENTER" prefHeight="20.0" prefWidth="289.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du ikke en konto?" />
-                        <Text fill="#3283d5" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in!">
+                        <Text fx:id="SkiftLoginKnap" fill="#3283d5" onMouseClicked="#SkiftTilLogin" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Log in!">
                            <HBox.margin>
                               <Insets left="3.0" />
                            </HBox.margin>

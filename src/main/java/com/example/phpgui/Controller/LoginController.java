@@ -1,5 +1,7 @@
 package com.example.phpgui.Controller;
 import com.example.phpgui.App;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.mindrot.jbcrypt.BCrypt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +27,8 @@ public class LoginController {
     PasswordField KodeLogin;
     @FXML
     Button LoginButton;
+    @FXML
+    Text SkiftTilmeldKnap;
 
 
 
@@ -62,11 +66,18 @@ public class LoginController {
             mysqlConnection.closeConnection();
         }
     }
+     @FXML
+    private void SkiftTilTilmeld(MouseEvent event) throws IOException {
+         App m = new App();
+         m.changeScene("Tilmeld.fxml");
+    }
+
+
 
     private boolean isValidUser(String Brugernavn, String Kodeord, Connection connection) throws SQLException {
         System.out.println("Checking user credentials: " + Brugernavn + Kodeord);
 
-        String sql = "SELECT Kodeord FROM Kunde WHERE Brugernavn = ?";
+        String sql = "SELECT Kodeord FROM Bruger WHERE Brugernavn = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, Brugernavn);
             ResultSet resultSet = pstmt.executeQuery();
