@@ -8,153 +8,148 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.TilmeldController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #3283D5;">
          <children>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #3283D5;">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/sample-logo-white.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Monika Frisør" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="537.0" style="-fx-background-color: #212121;">
-               <children>
-                  <Label text="TILMELD" textFill="WHITE">
-                     <font>
-                        <Font name="Futura Bold" size="25.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="50.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Profile.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <TextField fx:id="NavnTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Message.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <TextField fx:id="MailTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="E-mail" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox fx:id="telefonnummer" alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Call.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <TextField fx:id="telefonTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="289.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Unlock.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <PasswordField fx:id="KodeTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Kodeord" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                        </PasswordField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="289.0">
-                     <children>
-                        <CheckBox fx:id="mandTilmeld" mnemonicParsing="false" text="Mand" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="kvindeTilmeld" mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="opretKonto" mnemonicParsing="false" onAction="#opretKontoAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Button>
-                  <HBox alignment="CENTER" prefHeight="20.0" prefWidth="289.0">
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du ikke en konto?" />
-                        <Text fx:id="SkiftLoginKnap" fill="#3283d5" onMouseClicked="#SkiftTilLogin" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Log in!">
-                           <HBox.margin>
-                              <Insets left="3.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-            </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/sample-logo-white.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Monika Frisør" />
          </children>
-      </HBox>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="537.0" style="-fx-background-color: #212121;">
+         <children>
+            <Label text="TILMELD" textFill="WHITE">
+               <font>
+                  <Font name="Futura Bold" size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Profile.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="NavnTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Message.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="MailTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="E-mail" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="telefonnummer" alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Call.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="telefonTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="289.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Unlock.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <PasswordField fx:id="KodeTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Kodeord" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="289.0">
+               <children>
+                  <CheckBox fx:id="mandTilmeld" mnemonicParsing="false" text="Mand" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="kvindeTilmeld" mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Button fx:id="opretKonto" mnemonicParsing="false" onAction="#opretKontoAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="289.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du ikke en konto?" />
+                  <Text fx:id="SkiftLoginKnap" fill="#3283d5" onMouseClicked="#SkiftTilLogin" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Log in!">
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>
