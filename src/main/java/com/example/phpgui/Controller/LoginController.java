@@ -22,13 +22,13 @@ public class LoginController {
     private MySqlConnection mysqlConnection;
 
     @FXML
-    TextField UserLogin;
+    TextField userLogin;
     @FXML
-    PasswordField KodeLogin;
+    PasswordField kodeLogin;
     @FXML
-    Button LoginButton;
+    Button loginButton;
     @FXML
-    Text SkiftTilmeldKnap;
+    Text skiftTilmeldKnap;
 
 
 
@@ -39,17 +39,16 @@ public class LoginController {
     }
 
     @FXML
-    private void LoginButtonAction(ActionEvent event) throws IOException {
-        String Brugernavn = UserLogin.getText();
-        String Kodeord = KodeLogin.getText();
-        //String password = "Wentzel";
+    private void LoginButtonAction(ActionEvent event) throws IOException, SQLException {
+        Connection connection = mysqlConnection.getConnection();
+        String Brugernavn = userLogin.getText();
+        String Kodeord = kodeLogin.getText();
+
+
         String hashedPassword = hashPassword(Kodeord);
 
-        try {
-            Connection connection = mysqlConnection.getConnection();
-
             // Check if the entered user credentials are correct
-            if (isValidUser(Brugernavn, Kodeord, connection)) {
+            if (mysqlConnection.isValidUser(Brugernavn, Kodeord)) {
 
                 System.out.println("Det Virker!");
                 App m = new App();
@@ -58,37 +57,14 @@ public class LoginController {
             } else {
                 System.out.println("Invalid Brugernavn or password");
                 // Show an error message or handle failed login
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle exceptions appropriately
-        } finally {
-            mysqlConnection.closeConnection();
-        }
+            } connection.close();
     }
+
+
      @FXML
     private void SkiftTilTilmeld(MouseEvent event) throws IOException {
          App m = new App();
          m.changeScene("Tilmeld.fxml");
-    }
-
-
-
-    private boolean isValidUser(String Brugernavn, String Kodeord, Connection connection) throws SQLException {
-        System.out.println("Checking user credentials: " + Brugernavn + Kodeord);
-
-        String sql = "SELECT kodeord FROM Bruger WHERE Brugernavn = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, Brugernavn);
-            ResultSet resultSet = pstmt.executeQuery();
-            if (resultSet.next()) {
-                String hashedPassword = resultSet.getString("Kodeord");
-                return verifyPassword(Kodeord, hashedPassword);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     // Method to hash a password
@@ -97,8 +73,6 @@ public class LoginController {
     }
 
     // Method to verify a password against its hash
-    public static boolean verifyPassword(String Kodeord, String hashedPassword) {
-        return BCrypt.checkpw(Kodeord, hashedPassword);
-    }
+
 
 }

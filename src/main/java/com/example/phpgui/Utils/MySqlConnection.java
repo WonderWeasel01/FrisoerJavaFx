@@ -1,5 +1,7 @@
 package com.example.phpgui.Utils;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.*;
 
 public class MySqlConnection {
@@ -35,5 +37,27 @@ public class MySqlConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isValidUser(String Brugernavn, String Kodeord) throws SQLException {
+        System.out.println("Checking user credentials: " + Brugernavn + Kodeord);
+
+        String sql = "SELECT kodeord FROM Bruger WHERE Brugernavn = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, Brugernavn);
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                String hashedPassword = resultSet.getString("Kodeord");
+                return verifyPassword(Kodeord, hashedPassword);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean verifyPassword(String Kodeord, String hashedPassword) {
+        return BCrypt.checkpw(Kodeord, hashedPassword);
     }
 }

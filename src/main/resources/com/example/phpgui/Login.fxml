@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #3283D5;">
          <children>
@@ -44,7 +44,7 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="UserLogin" prefHeight="30.0" prefWidth="250.0" promptText="Brugernavn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="userLogin" prefHeight="30.0" prefWidth="250.0" promptText="Brugernavn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -67,14 +67,14 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <PasswordField fx:id="KodeLogin" prefHeight="30.0" prefWidth="250.0" promptText="Adgangskode" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
+                  <PasswordField fx:id="kodeLogin" prefHeight="30.0" prefWidth="250.0" promptText="Adgangskode" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </PasswordField>
                </children>
             </HBox>
-            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -82,7 +82,7 @@
             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="289.0">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du ikke en konto?" />
-                  <Text fx:id="SkiftTilmeldKnap" fill="#3283d5" onMouseClicked="#SkiftTilTilmeld" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Tilmeld dig!">
+                  <Text fx:id="skiftTilmeldKnap" fill="#3283d5" onMouseClicked="#SkiftTilTilmeld" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Tilmeld dig!">
                      <HBox.margin>
                         <Insets left="3.0" />
                      </HBox.margin>
