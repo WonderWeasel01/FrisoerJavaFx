@@ -21,6 +21,7 @@ public class LoginController {
 
     private MySqlConnection mysqlConnection;
 
+
     @FXML
     TextField userLogin;
     @FXML
@@ -64,8 +65,4 @@ public class LoginController {
          App m = new App();
          m.changeScene("Tilmeld.fxml");
     }
-
-
-
-
 }

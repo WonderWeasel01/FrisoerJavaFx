@@ -57,9 +57,35 @@ public class MySqlConnection {
         return false;
     }
 
+    public boolean userSignUp(String TilmeldNavn, String TilmeldTelefon, String TilmeldMail, String TilmeldKodeord) throws SQLException {
+        // Hash the password
+        String hashedPassword = BCrypt.hashpw(TilmeldKodeord, BCrypt.gensalt());
+
+        String sql = "INSERT INTO Bruger (Brugernavn, Telefonnummer, Email, Kodeord) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, TilmeldNavn);
+            pstmt.setString(2, TilmeldTelefon);
+            pstmt.setString(3, TilmeldMail);
+            pstmt.setString(4, hashedPassword); // Store the hashed password in the database
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                return true; // Sign up successful
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Sign up failed
+    }
+
+
 
     // Method to verify a password against its hash
     public static boolean verifyPassword(String Kodeord, String hashedPassword) {
         return BCrypt.checkpw(Kodeord, hashedPassword);
     }
+
+    public static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
 }

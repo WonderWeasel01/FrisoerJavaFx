@@ -84,7 +84,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
+                  <HBox fx:id="telefonnummer" alignment="CENTER" prefHeight="14.0" prefWidth="289.0">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -94,7 +94,7 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <TextField fx:id="MailTilmeld1" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                        <TextField fx:id="telefonTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -126,15 +126,15 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="38.0" prefWidth="289.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="Mand" textFill="WHITE">
+                        <CheckBox fx:id="mandTilmeld" mnemonicParsing="false" text="Mand" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
+                        <CheckBox fx:id="kvindeTilmeld" mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <Button fx:id="Login" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="opretKonto" mnemonicParsing="false" onAction="#opretKontoAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

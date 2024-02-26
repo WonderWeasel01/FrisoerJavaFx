@@ -1,18 +1,57 @@
 package com.example.phpgui.Controller;
 
 import com.example.phpgui.App;
+import com.example.phpgui.Utils.MySqlConnection;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import org.mindrot.jbcrypt.BCrypt;
+import static com.example.phpgui.Utils.MySqlConnection.hashPassword;
 
 public class TilmeldController {
+
+    private MySqlConnection mysqlConnection;
 
 
     @FXML
     Text SkiftLoginKnap;
 
+    @FXML
+    TextField NavnTilmeld;
+    @FXML
+    TextField MailTilmeld;
+    @FXML
+    TextField telefonTilmeld;
+    @FXML
+    PasswordField KodeTilmeld;
+
+
+    @FXML
+    private void initialize() {
+        mysqlConnection = new MySqlConnection(); // Initialize MySqlConnection
+    }
+
+    @FXML
+    private void opretKontoAction(ActionEvent event) throws IOException, SQLException {
+        Connection connection = mysqlConnection.getConnection();
+        String TilmeldNavn = NavnTilmeld.getText();
+        String TilmeldMail = MailTilmeld.getText();
+        String TilmeldTelefon = telefonTilmeld.getText();
+        String TilmeldKodeord = KodeTilmeld.getText();
+        if (mysqlConnection.userSignUp(TilmeldNavn, TilmeldTelefon, TilmeldMail, TilmeldKodeord)) {
+            System.out.println("Det Virker");
+        }else{
+            System.out.println("Der fejl");
+        }
+        connection.close();
+    }
 
     @FXML
     private void SkiftTilLogin(MouseEvent event) throws IOException {
