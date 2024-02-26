@@ -72,7 +72,7 @@ public class LoginController {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    // Method to verify a password against its hash
+
 
 
 }

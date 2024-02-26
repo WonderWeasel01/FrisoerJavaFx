@@ -57,6 +57,8 @@ public class MySqlConnection {
         return false;
     }
 
+
+    // Method to verify a password against its hash
     public static boolean verifyPassword(String Kodeord, String hashedPassword) {
         return BCrypt.checkpw(Kodeord, hashedPassword);
     }
