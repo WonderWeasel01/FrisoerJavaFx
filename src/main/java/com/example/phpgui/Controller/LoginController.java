@@ -54,7 +54,8 @@ public class LoginController {
             } else {
                 System.out.println("Invalid Brugernavn or password");
                 // Show an error message or handle failed login
-            } connection.close();
+            }
+            connection.close();
     }
 
 

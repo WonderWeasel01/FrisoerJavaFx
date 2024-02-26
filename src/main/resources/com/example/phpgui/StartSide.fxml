@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -8,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.StartsideController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="144.0" style="-fx-background-color: #1D1D29;">
          <children>
@@ -35,6 +35,9 @@
             </HBox>
          </children>
       </VBox>
-      <VBox prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;" />
+      <VBox prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;">
+         <children>
+            <Button fx:id="bookingsButton" mnemonicParsing="false" onAction="#skiftTilBookings" text="Bookings" />
+         </children></VBox>
    </children>
 </HBox>
