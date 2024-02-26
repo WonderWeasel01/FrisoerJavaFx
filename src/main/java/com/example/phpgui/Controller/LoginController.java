@@ -44,9 +44,6 @@ public class LoginController {
         String Brugernavn = userLogin.getText();
         String Kodeord = kodeLogin.getText();
 
-
-        String hashedPassword = hashPassword(Kodeord);
-
             // Check if the entered user credentials are correct
             if (mysqlConnection.isValidUser(Brugernavn, Kodeord)) {
 
@@ -65,11 +62,6 @@ public class LoginController {
     private void SkiftTilTilmeld(MouseEvent event) throws IOException {
          App m = new App();
          m.changeScene("Tilmeld.fxml");
-    }
-
-    // Method to hash a password
-    public static String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
 
