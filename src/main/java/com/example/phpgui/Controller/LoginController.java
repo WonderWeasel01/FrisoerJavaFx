@@ -77,7 +77,7 @@ public class LoginController {
     private boolean isValidUser(String Brugernavn, String Kodeord, Connection connection) throws SQLException {
         System.out.println("Checking user credentials: " + Brugernavn + Kodeord);
 
-        String sql = "SELECT Kodeord FROM Bruger WHERE Brugernavn = ?";
+        String sql = "SELECT kodeord FROM Bruger WHERE Brugernavn = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, Brugernavn);
             ResultSet resultSet = pstmt.executeQuery();
