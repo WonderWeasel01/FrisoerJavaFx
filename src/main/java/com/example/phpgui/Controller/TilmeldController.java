@@ -6,7 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -31,6 +34,7 @@ public class TilmeldController {
     TextField telefonTilmeld;
     @FXML
     PasswordField KodeTilmeld;
+
 
 
     @FXML
@@ -58,4 +62,19 @@ public class TilmeldController {
         App m = new App();
         m.changeScene("Login.fxml");
     }
+
+    @FXML
+    private void EnterPressed(KeyEvent event) throws IOException, SQLException {
+        if (event.getCode() == KeyCode.ENTER) {
+            // Handle the Enter key press by calling the LoginButtonAction method
+            try {
+                opretKontoAction(new ActionEvent());
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+                // Handle any exceptions that occur during the execution
+            }
+        }
+    }
+
+
 }

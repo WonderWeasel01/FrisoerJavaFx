@@ -7,23 +7,22 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
-public class BookingsController {
+public class MineAftalerController {
     @FXML
-    HBox mineAftalerButton;
+    HBox bookingsButton;
     @FXML
     HBox hjemButton;
 
 
 
     @FXML
-    private void skiftTilMineAftaler(MouseEvent event) throws IOException {
+    private void skiftTilBookings(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("MineAftaler.fxml");
+        m.changeScene("Bookings.fxml");
     }
     @FXML
     private void skiftTilHjem(MouseEvent event) throws IOException {
         App m = new App();
         m.changeScene("StartSide.fxml");
     }
-
 }

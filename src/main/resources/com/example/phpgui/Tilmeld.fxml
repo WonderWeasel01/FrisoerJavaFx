@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.TilmeldController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #3283D5;">
          <children>
@@ -45,7 +45,7 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="NavnTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="NavnTilmeld" onKeyPressed="#EnterPressed" prefHeight="30.0" prefWidth="250.0" promptText="Navn" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -68,7 +68,7 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="MailTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="E-mail" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="MailTilmeld" onKeyPressed="#EnterPressed" prefHeight="30.0" prefWidth="250.0" promptText="E-mail" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -91,7 +91,7 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="telefonTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
+                  <TextField fx:id="telefonTilmeld" onKeyPressed="#EnterPressed" prefHeight="30.0" prefWidth="250.0" promptText="Telefonnummer" style="-fx-background-color: #2F2F2F; -fx-text-fill: #FFFFFF;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -114,7 +114,7 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <PasswordField fx:id="KodeTilmeld" prefHeight="30.0" prefWidth="250.0" promptText="Kodeord" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
+                  <PasswordField fx:id="KodeTilmeld" onKeyPressed="#EnterPressed" prefHeight="30.0" prefWidth="250.0" promptText="Kodeord" style="-fx-background-color: #2F2F2F; -fx-text-fill: #ffffff;">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -123,15 +123,15 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="38.0" prefWidth="289.0">
                <children>
-                  <CheckBox fx:id="mandTilmeld" mnemonicParsing="false" text="Mand" textFill="WHITE">
+                  <CheckBox fx:id="mandTilmeld" mnemonicParsing="false" onKeyPressed="#EnterPressed" text="Mand" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="kvindeTilmeld" mnemonicParsing="false" text="Kvinde" textFill="WHITE" />
+                  <CheckBox fx:id="kvindeTilmeld" mnemonicParsing="false" onKeyPressed="#EnterPressed" text="Kvinde" textFill="WHITE" />
                </children>
             </HBox>
-            <Button fx:id="opretKonto" mnemonicParsing="false" onAction="#opretKontoAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="opretKonto" mnemonicParsing="false" onAction="#opretKontoAction" onKeyPressed="#EnterPressed" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Opret Konto" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

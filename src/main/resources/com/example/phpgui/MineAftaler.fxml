@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.StartsideController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.MineAftalerController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="144.0" style="-fx-background-color: #1D1D29;">
          <children>
@@ -25,25 +23,25 @@
                   </Text>
                </children>
             </VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="134.0" style="-fx-background-color: #F0F4FC; -fx-background-radius: 6;">
+            <HBox fx:id="hjemButton" alignment="CENTER_LEFT" onMouseClicked="#skiftTilHjem" prefHeight="30.0" prefWidth="134.0" style="-fx-background-radius: 6;">
                <children>
-                  <SVGPath content="M6.64373233,18.7821107 L6.64373233,15.7152449 C6.64371685,14.9380902 7.27567036,14.3067075 8.05843544,14.3018198 L10.9326107,14.3018198 C11.7188748,14.3018198 12.3562677,14.9346318 12.3562677,15.7152449 L12.3562677,15.7152449 L12.3562677,18.7732212 C12.3562498,19.4472781 12.9040221,19.995083 13.5829406,20 L15.5438266,20 C16.4596364,20.0023291 17.3387522,19.6427941 17.9871692,19.0007051 C18.6355861,18.3586161 19,17.4867541 19,16.5775231 L19,7.86584638 C19,7.13138763 18.6720694,6.43471253 18.1046183,5.96350064 L11.4429783,0.674268354 C10.2785132,-0.250877524 8.61537279,-0.22099178 7.48539114,0.745384082 C7.48539114,0.745384082 0.967012253,5.96350064 0.967012253,5.96350064 C0.37274068,6.42082162 0.0175522924,7.11956262 0,7.86584638 L0,16.5686336 C0,18.463707 1.54738155,20 3.45617342,20 L5.37229029,20 C5.69917279,20.0023364 6.01348703,19.8750734 6.24547302,19.6464237 C6.477459,19.417774 6.60792577,19.1066525 6.60791706,18.7821107 L6.64373233,18.7821107 Z">
+                  <SVGPath content="M6.64373233,18.7821107 L6.64373233,15.7152449 C6.64371685,14.9380902 7.27567036,14.3067075 8.05843544,14.3018198 L10.9326107,14.3018198 C11.7188748,14.3018198 12.3562677,14.9346318 12.3562677,15.7152449 L12.3562677,15.7152449 L12.3562677,18.7732212 C12.3562498,19.4472781 12.9040221,19.995083 13.5829406,20 L15.5438266,20 C16.4596364,20.0023291 17.3387522,19.6427941 17.9871692,19.0007051 C18.6355861,18.3586161 19,17.4867541 19,16.5775231 L19,7.86584638 C19,7.13138763 18.6720694,6.43471253 18.1046183,5.96350064 L11.4429783,0.674268354 C10.2785132,-0.250877524 8.61537279,-0.22099178 7.48539114,0.745384082 C7.48539114,0.745384082 0.967012253,5.96350064 0.967012253,5.96350064 C0.37274068,6.42082162 0.0175522924,7.11956262 0,7.86584638 L0,16.5686336 C0,18.463707 1.54738155,20 3.45617342,20 L5.37229029,20 C5.69917279,20.0023364 6.01348703,19.8750734 6.24547302,19.6464237 C6.477459,19.417774 6.60792577,19.1066525 6.60791706,18.7821107 L6.64373233,18.7821107 Z" fill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </SVGPath>
-                  <Text fill="#11121e" strokeType="OUTSIDE" strokeWidth="0.0" text="Hjem">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hjem">
                      <font>
                         <Font name="Avenir Medium" size="16.0" />
                      </font>
                   </Text>
                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
-               </VBox.margin>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+               </VBox.margin>
             </HBox>
             <HBox fx:id="bookingsButton" alignment="CENTER_LEFT" onMouseClicked="#skiftTilBookings" prefHeight="30.0" prefWidth="134.0" style="-fx-background-radius: 6;">
                <children>
@@ -65,14 +63,14 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox fx:id="mineAftalerButton" alignment="CENTER_LEFT" onMouseClicked="#skiftTilMineAftaler" prefHeight="30.0" prefWidth="134.0" style="-fx-background-radius: 6;">
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="134.0" style="-fx-background-color: #F0F4FC; -fx-background-radius: 6;">
                <children>
-                  <SVGPath content="M7.5,12.5151923 C11.5667957,12.5151923 15,13.1843563 15,15.7687489 C15,18.3531414 11.5447751,19 7.5,19 C3.43320432,19 -1.59872116e-14,18.3298221 -1.59872116e-14,15.7464434 C-1.59872116e-14,13.1620508 3.45422394,12.5151923 7.5,12.5151923 Z M16.9989726,5 C17.4952055,5 17.8979452,5.40944608 17.8979452,5.9116166 L17.8979452,5.9116166 L17.8979452,7.08786248 L19.1010274,7.08786248 C19.5962329,7.08786248 20,7.49730856 20,7.99947908 C20,8.50164959 19.5962329,8.91109568 19.1010274,8.91109568 L19.1010274,8.91109568 L17.8979452,8.91109568 L17.8979452,10.0883834 C17.8979452,10.5905539 17.4952055,11 16.9989726,11 C16.5037671,11 16.1,10.5905539 16.1,10.0883834 L16.1,10.0883834 L16.1,8.91109568 L14.8989726,8.91109568 C14.4027397,8.91109568 14,8.50164959 14,7.99947908 C14,7.49730856 14.4027397,7.08786248 14.8989726,7.08786248 L14.8989726,7.08786248 L16.1,7.08786248 L16.1,5.9116166 C16.1,5.40944608 16.5037671,5 16.9989726,5 Z M7.5,-5.32907052e-15 C10.2545709,-5.32907052e-15 12.4626318,2.23663006 12.4626318,5.02684127 C12.4626318,7.81705248 10.2545709,10.0536825 7.5,10.0536825 C4.74542907,10.0536825 2.53736821,7.81705248 2.53736821,5.02684127 C2.53736821,2.23663006 4.74542907,-5.32907052e-15 7.5,-5.32907052e-15 Z" fill="WHITE">
+                  <SVGPath content="M7.5,12.5151923 C11.5667957,12.5151923 15,13.1843563 15,15.7687489 C15,18.3531414 11.5447751,19 7.5,19 C3.43320432,19 -1.59872116e-14,18.3298221 -1.59872116e-14,15.7464434 C-1.59872116e-14,13.1620508 3.45422394,12.5151923 7.5,12.5151923 Z M16.9989726,5 C17.4952055,5 17.8979452,5.40944608 17.8979452,5.9116166 L17.8979452,5.9116166 L17.8979452,7.08786248 L19.1010274,7.08786248 C19.5962329,7.08786248 20,7.49730856 20,7.99947908 C20,8.50164959 19.5962329,8.91109568 19.1010274,8.91109568 L19.1010274,8.91109568 L17.8979452,8.91109568 L17.8979452,10.0883834 C17.8979452,10.5905539 17.4952055,11 16.9989726,11 C16.5037671,11 16.1,10.5905539 16.1,10.0883834 L16.1,10.0883834 L16.1,8.91109568 L14.8989726,8.91109568 C14.4027397,8.91109568 14,8.50164959 14,7.99947908 C14,7.49730856 14.4027397,7.08786248 14.8989726,7.08786248 L14.8989726,7.08786248 L16.1,7.08786248 L16.1,5.9116166 C16.1,5.40944608 16.5037671,5 16.9989726,5 Z M7.5,-5.32907052e-15 C10.2545709,-5.32907052e-15 12.4626318,2.23663006 12.4626318,5.02684127 C12.4626318,7.81705248 10.2545709,10.0536825 7.5,10.0536825 C4.74542907,10.0536825 2.53736821,7.81705248 2.53736821,5.02684127 C2.53736821,2.23663006 4.74542907,-5.32907052e-15 7.5,-5.32907052e-15 Z">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </SVGPath>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mine aftaler">
+                  <Text fill="#11121e" strokeType="OUTSIDE" strokeWidth="0.0" text="Mine aftaler">
                      <font>
                         <Font name="Avenir Medium" size="16.0" />
                      </font>
@@ -104,23 +102,6 @@
             </VBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;">
-         <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="VELKOMMEN TIL">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Logos/logo-solo.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Monikas Frisørsalon">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-         </children></VBox>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;" />
    </children>
 </HBox>

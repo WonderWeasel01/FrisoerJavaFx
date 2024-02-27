@@ -1,5 +1,7 @@
 package com.example.phpgui.Controller;
 import com.example.phpgui.App;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.mindrot.jbcrypt.BCrypt;
@@ -65,4 +67,19 @@ public class LoginController {
          App m = new App();
          m.changeScene("Tilmeld.fxml");
     }
+
+    @FXML
+    private void EnterPressed(KeyEvent event) throws IOException, SQLException {
+        if (event.getCode() == KeyCode.ENTER) {
+            // Handle the Enter key press by calling the LoginButtonAction method
+            try {
+                LoginButtonAction(new ActionEvent());
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+                // Handle any exceptions that occur during the execution
+            }
+        }
+    }
+
 }
+
