@@ -1,10 +1,11 @@
 package com.example.phpgui.Controller;
 import com.example.phpgui.App;
+import com.example.phpgui.Objects.Bruger;
+import com.example.phpgui.Utils.UseCase;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import org.mindrot.jbcrypt.BCrypt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,16 +13,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.phpgui.Utils.MySqlConnection;
-
 public class LoginController {
+    private UseCase UC = new UseCase();
 
-    private MySqlConnection mysqlConnection;
+
 
 
     @FXML
@@ -38,27 +35,39 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        mysqlConnection = new MySqlConnection(); // Initialize MySqlConnection
+
     }
 
     @FXML
     private void LoginButtonAction(ActionEvent event) throws IOException, SQLException {
-        Connection connection = mysqlConnection.getConnection();
-        String Brugernavn = userLogin.getText();
-        String Kodeord = kodeLogin.getText();
+        App m = new App();
 
-            // Check if the entered user credentials are correct
-            if (mysqlConnection.isValidUser(Brugernavn, Kodeord)) {
+        Bruger bruger;
+        bruger = UC.login(userLogin.getText(),kodeLogin.getText());
+        String rolle = bruger.getRolle();
+        System.out.println(rolle);
 
-                System.out.println("Det Virker!");
-                App m = new App();
-                m.changeScene("StartSide.fxml");
+        //Skifter til forskellige startsider baseret på brugerens rolle
+        switch (rolle) {
+            case null:
+                //Ingen rolle fundet
+                System.out.println("Forkert password");
+                m.changeScene("StartSideKunde.fxml");
+                break;
+            case "Admin":
+                m.changeScene("StartSideAdmin.fxml");
+                break;
+            case "Medarbejder":
+                m.changeScene("StartSideMedarbejder.fxml");
+                break;
+            case "Kunde":
+                m.changeScene("StartSideKunde.fxml");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + bruger.getRolle());
+                //Indsæt "Forkert password" besked
+        }
 
-            } else {
-                System.out.println("Invalid Brugernavn or password");
-                // Show an error message or handle failed login
-            }
-            connection.close();
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.phpgui.Utils;
 
+import com.example.phpgui.Objects.Bruger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -8,6 +9,7 @@ public class MySqlConnection {
 
     private Connection connection;
     private Statement stmt;
+
 
     public MySqlConnection() {
         connection = null;
@@ -61,7 +63,10 @@ public class MySqlConnection {
         // Hash the password
         String hashedPassword = BCrypt.hashpw(TilmeldKodeord, BCrypt.gensalt());
 
-        String sql = "INSERT INTO Bruger (Brugernavn, Telefonnummer, Email, Kodeord) VALUES (?, ?, ?, ?)";
+        // Default rolle = 3 (Kunde)
+        int rolle = 3;
+
+        String sql = "INSERT INTO Bruger (Brugernavn, Telefonnummer, Email, Kodeord, Rolle ) VALUES (?, ?, ?, ?, " + rolle + ")";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, TilmeldNavn);
             pstmt.setString(2, TilmeldTelefon);
@@ -75,6 +80,40 @@ public class MySqlConnection {
             e.printStackTrace();
         }
         return false; // Sign up failed
+    }
+
+    public int getBrugerRolle(String brugernavn) throws SQLException {
+
+        String sql = "SELECT Rolle FROM `Bruger` WHERE Brugernavn = '" + brugernavn +"';";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                return rs.getInt("Rolle");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
+    public Bruger getBruger(String brugernavn){
+        Bruger bruger = new Bruger();
+        bruger.setBrugernavn(brugernavn);
+
+        String sql = "SELECT * FROM `Bruger` inner JOIN Roller on Bruger.Rolle = Roller.rolleID WHERE Brugernavn = '" + brugernavn +"';";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                bruger.setId(rs.getInt("Id"));
+                bruger.setMobil(rs.getString("Telefonnummer"));
+                bruger.setEmail(rs.getString("Email"));
+                bruger.setRolle(rs.getString("RolleNavn"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bruger;
     }
 
 

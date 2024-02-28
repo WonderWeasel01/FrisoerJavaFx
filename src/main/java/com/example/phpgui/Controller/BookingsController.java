@@ -23,7 +23,7 @@ public class BookingsController {
     @FXML
     private void skiftTilHjem(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("StartSide.fxml");
+        m.changeScene("StartSideKunde.fxml");
     }
 
 }
