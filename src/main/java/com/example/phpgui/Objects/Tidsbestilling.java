@@ -68,7 +68,7 @@ public class Tidsbestilling {
         return new Tidsbestilling(datoTid, behandling);
     }
 
-    /*public static void main(String[] args) {
+    /*public static void main2(String[] args) {
         Tidsbestilling tidsbestilling = lavNyTidsbestilling();
         tidsbestilling.display();
         System.out.println("Er din bestilling i dag? "+ tidsbestilling.tidIdag());
