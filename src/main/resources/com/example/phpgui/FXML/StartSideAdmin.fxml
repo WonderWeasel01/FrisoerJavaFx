@@ -114,7 +114,7 @@
             </Text>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Logos/logo-solo.png" />
+                  <Image url="@../Logos/logo-solo.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Monikas Frisørsalon">

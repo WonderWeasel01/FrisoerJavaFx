@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/sample-logo-white.png" />
+                  <Image url="@../Images/sample-logo-white.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Monika Frisør" />
@@ -38,7 +38,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/Profile.png" />
+                        <Image url="@../Images/Profile.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
@@ -61,7 +61,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/Unlock.png" />
+                        <Image url="@../Images/Unlock.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />

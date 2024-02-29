@@ -45,21 +45,23 @@ public class LoginController {
         Bruger bruger;
         bruger = UC.login(userLogin.getText(),kodeLogin.getText());
         String rolle = bruger.getRolle();
+        System.out.println(rolle);
 
         //Skifter til forskellige startsider baseret på brugerens rolle
         switch (rolle) {
             case null:
                 //Ingen rolle fundet
                 System.out.println("Forkert password");
+                m.changeScene("FXML/StartSideKunde.fxml");
                 break;
             case "Admin":
-                m.changeScene("StartSideAdmin.fxml");
+                m.changeScene("FXML/StartSideAdmin.fxml");
                 break;
             case "Medarbejder":
-                m.changeScene("StartSideMedarbejder.fxml");
+                m.changeScene("FXML/StartSideMedarbejder.fxml");
                 break;
             case "Kunde":
-                m.changeScene("StartSideKunde.fxml");
+                m.changeScene("FXML/StartSideKunde.fxml");
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + bruger.getRolle());
@@ -72,7 +74,7 @@ public class LoginController {
      @FXML
     private void SkiftTilTilmeld(MouseEvent event) throws IOException {
          App m = new App();
-         m.changeScene("Tilmeld.fxml");
+         m.changeScene("FXML/Tilmeld.fxml");
     }
 
     @FXML

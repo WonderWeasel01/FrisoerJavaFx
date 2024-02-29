@@ -22,11 +22,11 @@ public class StartsideController {
     @FXML
     private void skiftTilBookings(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("Bookings.fxml");
+        m.changeScene("FXML/Bookings.fxml");
     }
     @FXML
     private void skiftTilMineAftaler(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("MineAftaler.fxml");
+        m.changeScene("FXML/MineAftaler.fxml");
     }
 }
