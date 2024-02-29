@@ -68,13 +68,13 @@ public class Tidsbestilling {
         return new Tidsbestilling(datoTid, behandling);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Tidsbestilling tidsbestilling = lavNyTidsbestilling();
         tidsbestilling.display();
         System.out.println("Er din bestilling i dag? "+ tidsbestilling.tidIdag());
         System.out.println(tidsbestilling.tidFremtid());
         System.out.println("Behandling: " + tidsbestilling.getBehandling());
-    }
+    }*/
 
     }
 
