@@ -45,14 +45,12 @@ public class LoginController {
         Bruger bruger;
         bruger = UC.login(userLogin.getText(),kodeLogin.getText());
         String rolle = bruger.getRolle();
-        System.out.println(rolle);
 
         //Skifter til forskellige startsider baseret på brugerens rolle
         switch (rolle) {
             case null:
                 //Ingen rolle fundet
                 System.out.println("Forkert password");
-                m.changeScene("StartSideKunde.fxml");
                 break;
             case "Admin":
                 m.changeScene("StartSideAdmin.fxml");
