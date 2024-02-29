@@ -1,6 +1,8 @@
 package com.example.phpgui.Utils;
 
+import com.example.phpgui.Objects.Behandling;
 import com.example.phpgui.Objects.Bruger;
+import com.example.phpgui.Objects.Tidsbestilling;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -114,6 +116,10 @@ public class MySqlConnection {
             e.printStackTrace();
         }
         return bruger;
+    }
+
+    public Tidsbestilling opretTidsbestilling(Bruger bruger, Bruger medarbejder, Behandling behandling){
+
     }
 
 

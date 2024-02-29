@@ -1,6 +1,7 @@
 package com.example.phpgui.Controller;
 
 import com.example.phpgui.App;
+import com.example.phpgui.Utils.UseCase;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -13,6 +14,7 @@ public class StartsideKundeController {
     HBox bookingsButton;
     @FXML
     HBox mineAftalerButton;
+    UseCase UC = new UseCase();
 
 
 
@@ -25,5 +27,10 @@ public class StartsideKundeController {
     private void skiftTilMineAftaler(MouseEvent event) throws IOException {
         App m = new App();
         m.changeScene("FXML/MineAftaler.fxml");
+    }
+
+    @FXML
+    private void logUd(MouseEvent event) throws IOException {
+        UC.logUd();
     }
 }

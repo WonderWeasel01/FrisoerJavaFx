@@ -5,4 +5,8 @@ public class Behandling {
     private String pris;
 
 
+
+
+
+
 }
