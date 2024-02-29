@@ -60,7 +60,7 @@ public class TilmeldController {
     @FXML
     private void SkiftTilLogin(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("Login.fxml");
+        m.changeScene("FXML/Login.fxml");
     }
 
     @FXML

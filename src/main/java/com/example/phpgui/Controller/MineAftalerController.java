@@ -18,11 +18,11 @@ public class MineAftalerController {
     @FXML
     private void skiftTilBookings(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("Bookings.fxml");
+        m.changeScene("FXML/Bookings.fxml");
     }
     @FXML
     private void skiftTilHjem(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("StartSideKunde.fxml");
+        m.changeScene("FXML/StartSideKunde.fxml");
     }
 }

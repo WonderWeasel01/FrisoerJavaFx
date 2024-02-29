@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 public class UseCase {
     private MySqlConnection mysqlConnection = new MySqlConnection();
+    public Bruger bruger;
+
 
 
 
@@ -16,11 +18,10 @@ public class UseCase {
     }
     public Bruger login(String brugernavn, String password) throws SQLException, IOException {
         Connection connection = mysqlConnection.getConnection();
-        Bruger bruger = new Bruger();
         // Check if the entered user credentials are correct
         if (mysqlConnection.isValidUser(brugernavn, password)) {
             System.out.println("Det Virker!");
-            bruger = mysqlConnection.getBruger(brugernavn);
+            this.bruger = mysqlConnection.getBruger(brugernavn);
             System.out.println("Logget ind som: \n" + bruger);
             connection.close();
         } else {
@@ -31,6 +32,19 @@ public class UseCase {
         }
         return bruger;
     }
+
+    public void logUd(){
+        this.bruger = null;
+        System.out.println("Log ud succesful\nBruger: " + bruger);
+    }
+
+    public void OpretTidsbestilling(){
+
+
+
+    }
+
+
 
 
 
