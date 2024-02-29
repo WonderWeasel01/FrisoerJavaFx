@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.SortedMap;
+
 
 public class Tidsbestilling {
     private String Behandling;
@@ -33,6 +33,7 @@ public class Tidsbestilling {
     public void setBehandling(String behandling) {
         Behandling = behandling;
     }
+
     //Metode til at se om tiden er i dag, og hvornår i dag.
     public boolean tidIdag(){
         LocalDateTime idag = LocalDateTime.now();
