@@ -8,6 +8,10 @@ public class Bruger {
     private String mobil;
     private String rolle;
 
+    public int getId() {
+        return Id;
+    }
+
     @Override
     public String toString() {
         return "Bruger{" +

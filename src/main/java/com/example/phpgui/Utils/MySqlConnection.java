@@ -6,6 +6,10 @@ import com.example.phpgui.Objects.Tidsbestilling;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MySqlConnection {
 
@@ -118,8 +122,62 @@ public class MySqlConnection {
         return bruger;
     }
 
-    public Tidsbestilling opretTidsbestilling(Bruger bruger, Bruger medarbejder, Behandling behandling){
+    public int getMedarbejderId(String brugernavn){
 
+        int medarbejderId = 0;
+        String sql = "SELECT * FROM `Bruger` inner JOIN Roller on Bruger.Rolle = Roller.rolleID WHERE Brugernavn = '" + brugernavn +"' and Rolle = 2;";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                medarbejderId = rs.getInt("Id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medarbejderId;
+    }
+
+    public boolean opretTidsbestilling(Tidsbestilling tidsbestilling){
+        String sql = "INSERT INTO `Tidsbestillinger`(`Dato`, `StartTidspunkt`, `SlutTidspunkt`, `BrugerID`, `MedarbejderID`) VALUES (?,?,?,?,?);";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setObject(1, tidsbestilling.getDato());
+            pstmt.setObject(2, tidsbestilling.getStartTidspunkt());
+            pstmt.setObject(3,tidsbestilling.getSlutTidspunkt());
+            pstmt.setInt(4, tidsbestilling.getKundeID());
+            pstmt.setInt(5, tidsbestilling.getMedarbejderID());
+
+            sql = "INSERT INTO `TidsbestillingHarBehandlinger`(`TidsbestillingID`, `BehandlingID`) VALUES (?,?)";
+            for(int i = 0; i<tidsbestilling.getBehandlinger().size();i++){
+                pstmt.setInt(1,tidsbestilling.getId());
+                pstmt.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
+            }
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                return true; //Tidsbestilling oprettet succesfuldt
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } return false;
+    }
+
+    public Behandling getBehandling(int behandlingId){
+        Behandling behandling = new Behandling();
+        behandling.setId(behandlingId);
+
+        String sql = "SELECT `BehandlingID`, `Navn`, `Pris`, `Varighed` FROM `Behandlinger` WHERE BehandlingID = " + behandlingId +";";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+               behandling.setNavn(rs.getString("Navn"));
+               behandling.setPris(rs.getInt("Pris"));
+               behandling.setVarighed(rs.getTime("Varighed"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return behandling;
     }
 
 

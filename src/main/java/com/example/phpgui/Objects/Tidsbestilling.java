@@ -2,38 +2,105 @@ package com.example.phpgui.Objects;
 
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 
 public class Tidsbestilling {
-    private String Behandling;
-    private LocalDateTime datoTid;
+    private int id;
+    private ArrayList<Behandling> behandlinger = new ArrayList<>();
+    private Time startTidspunkt;
+    private Time slutTidspunkt;
+    private LocalDate dato;
+    private int medarbejderID;
+    private int kundeID;
 
-
-    public Tidsbestilling(LocalDateTime datoTid, String behandling) {
-        this.datoTid = datoTid;
-        Behandling = behandling;
+    public int getMedarbejderID() {
+        return medarbejderID;
     }
 
-    public LocalDateTime getDatoTid() {
-        return datoTid;
+    public void setMedarbejderID(int medarbejderID) {
+        this.medarbejderID = medarbejderID;
     }
 
-    public void setDatoTid(LocalDateTime datoTid) {
-        this.datoTid = datoTid;
+    public int getKundeID() {
+        return kundeID;
     }
 
-    public String getBehandling() {
-        return Behandling;
+    public void setKundeID(int kundeID) {
+        this.kundeID = kundeID;
     }
 
-    public void setBehandling(String behandling) {
-        Behandling = behandling;
+    public Tidsbestilling() {
     }
 
+    public Time getStartTidspunkt() {
+        return startTidspunkt;
+    }
+
+    public void setStartTidspunkt(Time startTidspunkt) {
+        this.startTidspunkt = startTidspunkt;
+    }
+
+    public Time getSlutTidspunkt() {
+        return slutTidspunkt;
+    }
+
+    public void setSlutTidspunkt(Time slutTidspunkt) {
+        this.slutTidspunkt = slutTidspunkt;
+    }
+
+    public LocalDate getDato() {
+        return dato;
+    }
+
+    public void setDato(LocalDate dato) {
+        this.dato = dato;
+    }
+
+    @Override
+    public String toString() {
+        return "Tidsbestilling{" +
+                "id=" + id +
+                ", behandlinger=" + behandlinger +
+                ", startTidspunkt=" + startTidspunkt +
+                ", slutTidspunkt=" + slutTidspunkt +
+                ", dato=" + dato +
+                '}';
+    }
+
+    public ArrayList<Behandling> getBehandlinger() {
+        return behandlinger;
+    }
+
+    public void setBehandlinger(ArrayList<Behandling> behandlinger) {
+        this.behandlinger = behandlinger;
+    }
+
+  /*  public void tilfoejBehandling(Behandling behandling){
+        this.behandlinger.add(behandling);
+    }
+
+   */
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        id = id;
+    }
+
+
+/*
     //Metode til at se om tiden er i dag, og hvornår i dag.
     public boolean tidIdag(){
         LocalDateTime idag = LocalDateTime.now();
@@ -75,6 +142,7 @@ public class Tidsbestilling {
         System.out.println(tidsbestilling.tidFremtid());
         System.out.println("Behandling: " + tidsbestilling.getBehandling());
     }*/
+
 
     }
 

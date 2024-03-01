@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
@@ -102,6 +105,23 @@
             </VBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;" />
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="477.0" style="-fx-background-color: #11121E;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="435.0">
+               <children>
+                  <CheckBox fx:id="farvning" contentDisplay="CENTER" mnemonicParsing="false" onAction="#farvningCheckbox" text="Farvning" textFill="#fcfcfc" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <CheckBox fx:id="klipMand" mnemonicParsing="false" onAction="#klipMand" text="Klip(Mand)" textFill="#f2f0f0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="435.0">
+               <children>
+                  <DatePicker fx:id="datePicker" onAction="#datePicker" prefHeight="25.0" prefWidth="197.0" promptText="Vælg dato" />
+                  <ComboBox fx:id="comboBox" prefWidth="150.0" />
+               </children></HBox>
+         </children></VBox>
    </children>
 </HBox>
