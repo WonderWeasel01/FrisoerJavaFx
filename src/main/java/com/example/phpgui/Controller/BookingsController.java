@@ -78,4 +78,11 @@ public class BookingsController {
         UC.opretTidsbestilling();
     }
 
+    @FXML
+    private void logUd(MouseEvent event) throws IOException {
+        UC.logUd();
+        App m = new App();
+        m.changeScene("FXML/Login.fxml");
+    }
+
 }

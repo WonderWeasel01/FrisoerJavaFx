@@ -32,5 +32,7 @@ public class StartsideKundeController {
     @FXML
     private void logUd(MouseEvent event) throws IOException {
         UC.logUd();
+        App m = new App();
+        m.changeScene("FXML/Login.fxml");
     }
 }
