@@ -14,21 +14,20 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.LoginController">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #3283D5;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="559.0" style="-fx-background-color: #1D1D29;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="202.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/sample-logo-white.png" />
+                  <Image url="@../Logos/logo-white.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Monika Frisør" />
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="537.0" style="-fx-background-color: #212121;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="537.0" style="-fx-background-color: #11121E;">
          <children>
             <Label text="LOGIN" textFill="WHITE">
                <font>
-                  <Font name="Futura Bold" size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="50.0" />
@@ -74,7 +73,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#LoginButtonAction" onKeyPressed="#EnterPressed" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #3283D5;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#LoginButtonAction" onKeyPressed="#EnterPressed" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: white;" text="Login">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

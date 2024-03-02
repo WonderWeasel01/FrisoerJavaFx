@@ -3,6 +3,7 @@ package com.example.phpgui.Controller;
 import com.example.phpgui.App;
 import com.example.phpgui.Utils.UseCase;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -11,22 +12,23 @@ import java.io.IOException;
 public class StartsideAdminController {
 
     UseCase UC = new UseCase();
+
     @FXML
-    HBox bookingsButton;
+    HBox PrisListeButton;
     @FXML
-    HBox mineAftalerButton;
+    HBox kelenderButton;
 
 
 
     @FXML
-    private void skiftTilBookings(MouseEvent event) throws IOException {
+    private void skiftTilKalender(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("FXML/Bookings.fxml");
+        m.changeScene("FXML/KalenderAdmin.fxml");
     }
     @FXML
-    private void skiftTilMineAftaler(MouseEvent event) throws IOException {
+    private void skiftTilPrisListe(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("FXML/MineAftaler.fxml");
+        m.changeScene("FXML/PrisListe.fxml");
     }
 
     @FXML
