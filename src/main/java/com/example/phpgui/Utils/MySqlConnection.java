@@ -1,8 +1,10 @@
 package com.example.phpgui.Utils;
 
+import com.example.phpgui.Controller.KalenderAdminController;
 import com.example.phpgui.Objects.Behandling;
 import com.example.phpgui.Objects.Bruger;
 import com.example.phpgui.Objects.Tidsbestilling;
+import javafx.scene.control.DatePicker;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -179,6 +181,35 @@ public class MySqlConnection {
         }
         return behandling;
     }
+
+
+
+    /*public void getTidsBestillingAdmin(DatePicker datePicker) {
+        LocalDate selectedDate = datePicker.getValue();
+
+        if (selectedDate != null) {
+            try {
+                String sql = "SELECT * FROM tidsbetillinger WHERE dato = ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setDate(1, java.sql.Date.valueOf(selectedDate));
+
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    // Process and print results
+                    // Example:
+                    String timeSlot = resultSet.getString("time_slot");
+                    System.out.println("Time Slot: " + timeSlot);
+                }
+
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }*/
+
+
 
 
 
