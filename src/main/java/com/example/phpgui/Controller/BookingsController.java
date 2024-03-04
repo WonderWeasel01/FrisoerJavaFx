@@ -54,7 +54,10 @@ public class BookingsController {
     @FXML
     private void farvningCheckbox(ActionEvent event){
         UC.tilfoejBehandlingTilTidsbestilling(3); // 3 = farvning id i DB
+
     }
+
+
 
     @FXML
     private void klipMand(ActionEvent event){

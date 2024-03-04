@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class MySqlConnection {
 
@@ -180,6 +181,21 @@ public class MySqlConnection {
             e.printStackTrace();
         }
         return behandling;
+    }
+
+    public ArrayList<Time> getTider(LocalDate date, int medarbejderID){
+        ArrayList<Time> tider = new ArrayList<>();
+        String sql = "SELECT * FROM `Tidsbestillinger` where dato = '" + date.toString() + "' and MedarbejderID = " + medarbejderID + " ORDER BY Dato, MedarbejderID, StartTidspunkt;";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                tider.add(rs.getTime("StartTidspunkt"));
+                tider.add(rs.getTime("SlutTidspunkt"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tider;
     }
 
 
