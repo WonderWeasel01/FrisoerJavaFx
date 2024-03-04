@@ -23,14 +23,17 @@ public class UseCase {
 
     public static void main(String[] args){
         UseCase uc = new UseCase();
-        ArrayList<LocalTime> tider = uc.ledigeTider();
+        ArrayList ledigeTider = uc.ledigeTider(LocalDate.of(2024,3,2),"test2");
+        System.out.println();
+        System.out.println(ledigeTider);
 
-        System.out.println(tider);
+
 
     }
 
 
     public void opretBruger(){
+
 
     }
     public Bruger login(String brugernavn, String password) throws SQLException, IOException {
@@ -96,8 +99,8 @@ public class UseCase {
        }
        System.out.println("Aftaler: " + tider1 + "\n");
 
-       Time time = Time.valueOf("01:00:00");
-       LocalTime tid = time.toLocalTime();
+       Time behandlingsVarigheder = this.tidsbestilling.getBehandlingsVarigheder();
+       LocalTime tid = behandlingsVarigheder.toLocalTime();
 
        // Kontrollerer om der er plads til at sætte den valgte aftale ind før den næste aftale starter.
        for(int slutTidspunkt = 0; slutTidspunkt <= tider1.size(); slutTidspunkt+=2) {

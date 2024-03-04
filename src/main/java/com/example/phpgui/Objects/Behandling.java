@@ -19,6 +19,7 @@ public class Behandling {
                 '}';
     }
 
+
     public void setPris(int pris) {
         this.pris = pris;
     }

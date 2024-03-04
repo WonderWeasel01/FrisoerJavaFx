@@ -126,7 +126,6 @@ public class MySqlConnection {
     }
 
     public int getMedarbejderId(String brugernavn){
-
         int medarbejderId = 0;
         String sql = "SELECT * FROM `Bruger` inner JOIN Roller on Bruger.Rolle = Roller.rolleID WHERE Brugernavn = '" + brugernavn +"' and Rolle = 2;";
         try (Statement stmt = connection.createStatement()) {
@@ -196,6 +195,20 @@ public class MySqlConnection {
             e.printStackTrace();
         }
         return tider;
+    }
+
+    public ArrayList<String> getAlleMedarbejderBrugernavne(){
+        ArrayList<String> medarbejdere = new ArrayList<>();
+        String sql ="SELECT * FROM `Bruger` WHERE Rolle = 2;";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+               medarbejdere.add(rs.getString("Brugernavn"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medarbejdere;
     }
 
 

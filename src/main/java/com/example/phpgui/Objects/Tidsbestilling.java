@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,16 @@ public class Tidsbestilling {
     private LocalDate dato;
     private int medarbejderID;
     private int kundeID;
+
+    public Time getBehandlingsVarigheder(){
+        LocalTime result = LocalTime.of(0,0,0);
+        for(int i = 0; i<behandlinger.size();i++){
+            LocalTime behandlingsVarighed = behandlinger.get(i).getVarighed().toLocalTime();
+            result = result.plusHours(behandlingsVarighed.getHour()).plusMinutes(behandlingsVarighed.getMinute()).plusSeconds(behandlingsVarighed.getSecond());
+        }
+        Time resultInTime = Time.valueOf(result);
+        return resultInTime;
+    }
 
     public int getMedarbejderID() {
         return medarbejderID;
