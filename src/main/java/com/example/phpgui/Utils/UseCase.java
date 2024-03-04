@@ -34,7 +34,6 @@ public class UseCase {
 
     }
     public Bruger login(String brugernavn, String password) throws SQLException, IOException {
-       // Connection connection = mysqlConnection.getConnection();
         // Check if the entered user credentials are correct
         if (mysqlConnection.isValidUser(brugernavn, password)) {
             System.out.println("Det Virker!");
