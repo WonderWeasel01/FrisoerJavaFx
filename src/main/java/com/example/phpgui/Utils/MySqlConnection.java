@@ -222,34 +222,34 @@ public class MySqlConnection {
 
 
 
-    /*public void getTidsBestillingAdmin(DatePicker datePicker) {
-        LocalDate selectedDate = datePicker.getValue();
-
-        if (selectedDate != null) {
+    public ArrayList getTidsBestillingAdmin(LocalDate date) {
+        ArrayList<Tidsbestilling> tidbestillinger = new ArrayList<>();
+        if (date != null) {
             try {
-                String sql = "SELECT * FROM tidsbetillinger WHERE dato = ?";
+                String sql = "SELECT * FROM Tidsbestillinger WHERE dato = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setDate(1, java.sql.Date.valueOf(selectedDate));
+                statement.setDate(1, java.sql.Date.valueOf(date));
 
                 ResultSet resultSet = statement.executeQuery();
 
                 while (resultSet.next()) {
                     // Process and print results
                     // Example:
-                    String timeSlot = resultSet.getString("time_slot");
-                    System.out.println("Time Slot: " + timeSlot);
+                    Tidsbestilling tb = new Tidsbestilling();
+                    tb.setId(resultSet.getInt("TidsbestillingID"));
+                    tb.setDato(resultSet.getDate("Dato").toLocalDate());
+                    tb.setStartTidspunkt(resultSet.getTime("StartTidspunkt"));
+                    tb.setSlutTidspunkt(resultSet.getTime("SlutTidspunkt"));
+                    tb.setKundeID(resultSet.getInt("BrugerID"));
+                    tb.setMedarbejderID(resultSet.getInt("MedarbejderID"));
+                    tidbestillinger.add(tb);
                 }
-
-                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-    }*/
-
-
-
-
+        return tidbestillinger;
+    }
 
     // Method to verify a password against its hash
     public static boolean verifyPassword(String Kodeord, String hashedPassword) {

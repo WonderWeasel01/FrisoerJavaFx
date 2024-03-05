@@ -17,7 +17,7 @@ public class StartsideKundeController {
     HBox bookingsButton;
     @FXML
     HBox mineAftalerButton;
-    UseCase UC = new UseCase();
+    UseCase UC;
     @FXML
     Button kunde;
 

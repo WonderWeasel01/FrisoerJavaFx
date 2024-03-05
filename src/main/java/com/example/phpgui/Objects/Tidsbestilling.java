@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Tidsbestilling {
@@ -83,9 +81,19 @@ public class Tidsbestilling {
                 ", startTidspunkt=" + startTidspunkt +
                 ", slutTidspunkt=" + slutTidspunkt +
                 ", dato=" + dato +
+                ", medarbejderID=" + medarbejderID +
+                ", kundeID=" + kundeID +
                 '}';
     }
 
+
+    public void fjernBehandling(int behandlingsID){
+        for(int i = 0; i<behandlinger.size();i++){
+            if(behandlinger.get(i).getId() == behandlingsID){
+                behandlinger.remove(behandlinger.get(i));
+            }
+        }
+    }
     public ArrayList<Behandling> getBehandlinger() {
         return behandlinger;
     }

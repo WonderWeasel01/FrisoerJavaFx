@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ClientInfoStatus;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -42,11 +43,94 @@ public class BookingsController {
     ComboBox comboBoxTider;
     @FXML
     Button opretTidsbestilling;
+    @FXML
+    CheckBox klipDame;
+    @FXML
+    CheckBox skaeg;
+    @FXML
+    CheckBox haarsaet;
+
 
     private UseCase UC = new UseCase();
 
 
 
+    @FXML
+    private void klipDame(ActionEvent event){
+        if(klipDame.isSelected()){
+            UC.tilfoejBehandlingTilTidsbestilling(2);
+            if(comboBoxTider.getValue() != null){
+                comboBoxTider.getSelectionModel().clearSelection();
+            }
+            if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+
+        } else{
+            comboBoxTider.getSelectionModel().clearSelection();
+            UC.fjernTidspunktFraTidsbestilling();
+            UC.fjernBehandlingFraTidsbestilling(2);
+            if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+
+        }
+
+
+    }
+    @FXML
+    private void skaeg(ActionEvent event) {
+        if (skaeg.isSelected()) {
+            UC.tilfoejBehandlingTilTidsbestilling(4);
+            if(comboBoxTider.getValue() != null){
+                comboBoxTider.getSelectionModel().clearSelection();
+            }
+            if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+
+        } else {
+            comboBoxTider.getSelectionModel().clearSelection();
+            UC.fjernTidspunktFraTidsbestilling();
+            UC.fjernBehandlingFraTidsbestilling(4);
+            if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+        }
+    }
+
+    @FXML
+    private void haarsaetning(ActionEvent event){
+        if(haarsaet.isSelected()){
+            UC.tilfoejBehandlingTilTidsbestilling(5);
+            if(comboBoxTider.getValue() != null){
+                comboBoxTider.getSelectionModel().clearSelection();
+            }
+            if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+
+        } else {
+            comboBoxTider.getSelectionModel().clearSelection();
+            UC.fjernTidspunktFraTidsbestilling();
+            UC.fjernBehandlingFraTidsbestilling(5);
+            if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
+                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+                comboBoxTider.setItems(list);
+            }
+        }
+    }
     @FXML
     private void skiftTilMineAftaler(MouseEvent event) throws IOException {
         App m = new App();
@@ -61,21 +145,63 @@ public class BookingsController {
     @FXML
     private void datePicker(ActionEvent evt){
         UC.tilfoejDatoTilTidsbestilling(datePicker.getValue());
-
         ArrayList<String> medarbejdere = UC.getMedarbejderBrugernavne();
         ObservableList<String> list = FXCollections.observableArrayList(medarbejdere);
-        comboBoxMedarbejdere.setItems(list);
+        if(comboBoxMedarbejdere.getValue() == null){
+            comboBoxMedarbejdere.setItems(list);
+        } else{
+            ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+            ObservableList<LocalTime> list1 = FXCollections.observableArrayList(ledigeTider);
+            comboBoxTider.setItems(list1);
+        }
+
     }
 
     @FXML
     private void farvningCheckbox(ActionEvent event){
-        UC.tilfoejBehandlingTilTidsbestilling(3); // 3 = farvning id i DB
+        if(farvning.isSelected()){
+            UC.tilfoejBehandlingTilTidsbestilling(3);
+            if(comboBoxTider.getValue() != null){
+                comboBoxTider.getSelectionModel().clearSelection();
+            }
+            if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
+                setComboBoxTider();
+            }
+        } else {
+            comboBoxTider.getSelectionModel().clearSelection();
+            UC.fjernTidspunktFraTidsbestilling();
+            UC.fjernBehandlingFraTidsbestilling(3);
+            if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
+                setComboBoxTider();
+            }
+        }
+    }
 
+    public void setComboBoxTider(){
+        ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
+        ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
+        comboBoxTider.setItems(list);
     }
 
     @FXML
     private void klipMand(ActionEvent event){
-        UC.tilfoejBehandlingTilTidsbestilling(1); // 1 = klip(mand) id i DB
+        if(klipMand.isSelected()){
+            UC.tilfoejBehandlingTilTidsbestilling(1);
+            if(comboBoxTider.getValue() != null){
+                comboBoxTider.getSelectionModel().clearSelection();
+            }
+            if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
+                setComboBoxTider();
+            }
+
+        } else {
+            comboBoxTider.getSelectionModel().clearSelection();
+            UC.fjernTidspunktFraTidsbestilling();
+            UC.fjernBehandlingFraTidsbestilling(1);
+            if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
+                setComboBoxTider();
+            }
+        }
     }
 
 
@@ -83,18 +209,18 @@ public class BookingsController {
     private void comboBoxMedarbejderSelect(ActionEvent event){
         String s = comboBoxMedarbejdere.getSelectionModel().getSelectedItem().toString();
         UC.tilfoejMedarbejderTilTidsbestilling(s);
-
-        ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
-        ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
-        comboBoxTider.setItems(list);
+        setComboBoxTider();
 
 
     }
 
     @FXML
     private void ComboBoxTiderSelect(){
-        LocalTime startTidspunkt = (LocalTime) comboBoxTider.getValue();
-        UC.tilfoejTidspunktTilTidsbestilling(startTidspunkt);
+        if (comboBoxTider.getValue() != null){
+            LocalTime startTidspunkt = (LocalTime) comboBoxTider.getValue();
+            UC.tilfoejTidspunktTilTidsbestilling(startTidspunkt);
+        }
+
     }
 
     @FXML
@@ -102,6 +228,8 @@ public class BookingsController {
         UC.tilfoejBrugerIDtilTidsbestilling();
         UC.opretTidsbestilling();
     }
+
+
 
 
     @FXML

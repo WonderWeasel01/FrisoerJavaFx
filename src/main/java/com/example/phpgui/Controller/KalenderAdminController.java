@@ -33,6 +33,7 @@ public class KalenderAdminController {
 
     @FXML
     private void adminSeKalender(MouseEvent event)throws  IOException{
+        UC.getTidsbestillinger(adminKalender.getValue());
 
     }
 

@@ -16,10 +16,15 @@ import java.util.ArrayList;
 public class UseCase {
     private MySqlConnection mysqlConnection = new MySqlConnection();
     Connection connection = mysqlConnection.getConnection();
-    public Bruger bruger = new Bruger();
+    public static Bruger bruger = new Bruger();
     public Tidsbestilling tidsbestilling = new Tidsbestilling();
 
     public static void main(String[] args) {
+
+        UseCase uc = new UseCase();
+        uc.tilfoejBehandlingTilTidsbestilling(2);
+        uc.fjernBehandlingFraTidsbestilling(2);
+        System.out.println(uc.tidsbestilling.getBehandlinger());
 
     }
 
@@ -51,11 +56,18 @@ public class UseCase {
 
 
     public void opretTidsbestilling() {
-        System.out.println("Tidsbestilling: " + tidsbestilling);
         if(mysqlConnection.opretTidsbestilling(this.tidsbestilling)){
             System.out.println("Tidsbestilling oprettet");
+            System.out.println(this.tidsbestilling);
         } else System.out.println("Der skete en fejl med tidsbestillingen");
 
+
+    }
+
+    public void fjernTidspunktFraTidsbestilling(){
+        this.tidsbestilling.setStartTidspunkt(null);
+        this.tidsbestilling.setSlutTidspunkt(null);
+        System.out.println("Tidspunkt fjernet: \n" + "Start tidspunkt: " + tidsbestilling.getStartTidspunkt() + "   Slut tidspunkt: " + tidsbestilling.getSlutTidspunkt());
     }
 
     public void tilfoejBehandlingTilTidsbestilling(int behandlingID) {
@@ -63,6 +75,12 @@ public class UseCase {
         behandling = mysqlConnection.getBehandling(behandlingID);
         this.tidsbestilling.getBehandlinger().add(behandling);
         System.out.println("Behandlinger tilføjet: " + tidsbestilling.getBehandlinger());
+    }
+
+    public void fjernBehandlingFraTidsbestilling(int behandlingID){
+        this.tidsbestilling.fjernBehandling(behandlingID);
+        System.out.println("Behandling fjernet: " + tidsbestilling.getBehandlinger());
+
     }
 
     public void tilfoejDatoTilTidsbestilling(LocalDate dato) {
@@ -141,7 +159,7 @@ public class UseCase {
 
                 // Kontrollerer om ens tid ville ramme en anden booket tid
                 if ((andreTBStart.isBefore(minTBSlut) && minTBSlut.isBefore(andreTBSlut)) ||
-                        (andreTBStart.isBefore(ledigeTider.get(i)) && andreTBSlut.isAfter(ledigeTider.get(i)))) {
+                        (andreTBStart.isBefore(ledigeTider.get(i)) && andreTBSlut.isAfter(ledigeTider.get(i)) || andreTBSlut.isAfter(ledigeTider.get(i)) && minTBSlut.isAfter(andreTBStart))) {
                     tiderDerSkalFjernes.add(ledigeTider.get(i));
                     break;
                 }
@@ -156,14 +174,18 @@ public class UseCase {
         ledigeTider.removeAll(tiderDerSkalFjernes);
         System.out.println("Ledige tider: " + ledigeTider);
         return ledigeTider;
-
-
     }
+
     public ArrayList<String> getMedarbejderBrugernavne () {
         ArrayList<String> medarbejderBrugernavne = new ArrayList<>();
         for (int i = 0; i < mysqlConnection.getAlleMedarbejdere().size(); i++) {
             medarbejderBrugernavne.add(mysqlConnection.getAlleMedarbejdere().get(i).getBrugernavn());
         }
         return medarbejderBrugernavne;
+    }
+
+    public void getTidsbestillinger(LocalDate date){
+        ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(date);
+        System.out.println("Tidsbestillinger: " + tb);
     }
 }
