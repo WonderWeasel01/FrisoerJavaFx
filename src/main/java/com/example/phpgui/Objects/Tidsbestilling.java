@@ -13,12 +13,23 @@ import java.util.*;
 
 public class Tidsbestilling {
     private int id;
+    private static int idAutoIncr;
+
     private ArrayList<Behandling> behandlinger = new ArrayList<>();
     private Time startTidspunkt;
     private Time slutTidspunkt;
     private LocalDate dato;
     private int medarbejderID;
     private int kundeID;
+
+
+    public static int getIdAutoIncr() {
+        return idAutoIncr;
+    }
+
+    public static void setIdAutoIncr(int idAutoIncr) {
+        Tidsbestilling.idAutoIncr = idAutoIncr;
+    }
 
     public Time getBehandlingsVarigheder(){
         LocalTime result = LocalTime.of(0,0,0);
@@ -47,6 +58,8 @@ public class Tidsbestilling {
     }
 
     public Tidsbestilling() {
+        idAutoIncr++;
+        this.id = idAutoIncr;
     }
 
     public Time getStartTidspunkt() {
@@ -101,13 +114,6 @@ public class Tidsbestilling {
     public void setBehandlinger(ArrayList<Behandling> behandlinger) {
         this.behandlinger = behandlinger;
     }
-
-  /*  public void tilfoejBehandling(Behandling behandling){
-        this.behandlinger.add(behandling);
-    }
-
-   */
-
 
 
     public int getId() {

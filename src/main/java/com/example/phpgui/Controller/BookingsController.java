@@ -77,10 +77,7 @@ public class BookingsController {
                 ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
                 comboBoxTider.setItems(list);
             }
-
         }
-
-
     }
     @FXML
     private void skaeg(ActionEvent event) {
@@ -193,7 +190,6 @@ public class BookingsController {
             if(datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null){
                 setComboBoxTider();
             }
-
         } else {
             comboBoxTider.getSelectionModel().clearSelection();
             UC.fjernTidspunktFraTidsbestilling();
@@ -210,8 +206,6 @@ public class BookingsController {
         String s = comboBoxMedarbejdere.getSelectionModel().getSelectedItem().toString();
         UC.tilfoejMedarbejderTilTidsbestilling(s);
         setComboBoxTider();
-
-
     }
 
     @FXML
@@ -226,7 +220,10 @@ public class BookingsController {
     @FXML
     private void onOpretTidsbestillingClick(ActionEvent event){
         UC.tilfoejBrugerIDtilTidsbestilling();
-        UC.opretTidsbestilling();
+        if(UC.opretTidsbestilling()){
+            comboBoxTider.getSelectionModel().clearSelection();
+            setComboBoxTider();
+        }
     }
 
 

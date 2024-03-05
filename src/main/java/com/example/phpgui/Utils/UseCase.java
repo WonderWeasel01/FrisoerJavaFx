@@ -55,13 +55,15 @@ public class UseCase {
 
 
 
-    public void opretTidsbestilling() {
+    public Boolean opretTidsbestilling() {
         if(mysqlConnection.opretTidsbestilling(this.tidsbestilling)){
             System.out.println("Tidsbestilling oprettet");
             System.out.println(this.tidsbestilling);
-        } else System.out.println("Der skete en fejl med tidsbestillingen");
-
-
+            return true;
+        } else {
+            System.out.println("Der skete en fejl med tidsbestillingen");
+            return false;
+        }
     }
 
     public void fjernTidspunktFraTidsbestilling(){
@@ -80,7 +82,6 @@ public class UseCase {
     public void fjernBehandlingFraTidsbestilling(int behandlingID){
         this.tidsbestilling.fjernBehandling(behandlingID);
         System.out.println("Behandling fjernet: " + tidsbestilling.getBehandlinger());
-
     }
 
     public void tilfoejDatoTilTidsbestilling(LocalDate dato) {
@@ -123,13 +124,9 @@ public class UseCase {
     public ArrayList<LocalTime> ledigeTider() {
         int medarbejderID = tidsbestilling.getMedarbejderID();
         LocalDate date = tidsbestilling.getDato();
-
         ArrayList<Time> bestilteTider = mysqlConnection.getTider(date, medarbejderID);
-
         ArrayList<LocalTime> andreTidsbestillinger = new ArrayList<>();
         ArrayList<LocalTime> ledigeTider = new ArrayList<>(100);
-
-
         LocalTime aabningstid = LocalTime.of(8, 0, 0);
         LocalTime lukkeTid = LocalTime.of(21, 0, 0);
 
@@ -138,6 +135,7 @@ public class UseCase {
             ledigeTider.add(aabningstid);
             aabningstid = aabningstid.plusMinutes(30);
         }
+
         //Konvertere til localtime i stedet for time så vi kan beregne med tiderne.
         for (int i = 0; i < bestilteTider.size(); i++) {
             andreTidsbestillinger.add(bestilteTider.get(i).toLocalTime());

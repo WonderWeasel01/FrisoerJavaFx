@@ -141,26 +141,31 @@ public class MySqlConnection {
 
     public boolean opretTidsbestilling(Tidsbestilling tidsbestilling){
         String sql = "INSERT INTO `Tidsbestillinger`(`Dato`, `StartTidspunkt`, `SlutTidspunkt`, `BrugerID`, `MedarbejderID`) VALUES (?,?,?,?,?);";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setObject(1, tidsbestilling.getDato());
             pstmt.setObject(2, tidsbestilling.getStartTidspunkt());
             pstmt.setObject(3,tidsbestilling.getSlutTidspunkt());
             pstmt.setInt(4, tidsbestilling.getKundeID());
             pstmt.setInt(5, tidsbestilling.getMedarbejderID());
+            pstmt.execute();
+
+
+            ResultSet rs = pstmt.getGeneratedKeys();
+            int tidsbestillingID = 0;
+            if (rs.next()){
+                tidsbestillingID = rs.getInt(1);
+            }
 
             sql = "INSERT INTO `TidsbestillingHarBehandlinger`(`TidsbestillingID`, `BehandlingID`) VALUES (?,?);";
-            PreparedStatement pstmt1 = connection.prepareStatement(sql);
-            for(int i = 0; i<tidsbestilling.getBehandlinger().size();i++){
-                pstmt1.setInt(1,tidsbestilling.getId());
-                pstmt1.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
+            try(PreparedStatement pstmt1 = connection.prepareStatement(sql)){
+                for(int i = 0; i<tidsbestilling.getBehandlinger().size();i++){
+                    pstmt1.setInt(1, tidsbestillingID);
+                    pstmt1.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
+
+                    pstmt1.execute();
+                }
             }
-
-
-            int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected > 0) {
-                return true; //Tidsbestilling oprettet succesfuldt
-            }
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } return false;
@@ -250,6 +255,7 @@ public class MySqlConnection {
         }
         return tidbestillinger;
     }
+
 
     // Method to verify a password against its hash
     public static boolean verifyPassword(String Kodeord, String hashedPassword) {
