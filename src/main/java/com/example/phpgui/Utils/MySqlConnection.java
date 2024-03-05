@@ -117,7 +117,7 @@ public class MySqlConnection {
                 bruger.setId(rs.getInt("Id"));
                 bruger.setMobil(rs.getString("Telefonnummer"));
                 bruger.setEmail(rs.getString("Email"));
-                bruger.setRolle(rs.getString("RolleNavn"));
+                bruger.setRolle(rs.getInt("Rolle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,11 +148,13 @@ public class MySqlConnection {
             pstmt.setInt(4, tidsbestilling.getKundeID());
             pstmt.setInt(5, tidsbestilling.getMedarbejderID());
 
-            sql = "INSERT INTO `TidsbestillingHarBehandlinger`(`TidsbestillingID`, `BehandlingID`) VALUES (?,?)";
+            sql = "INSERT INTO `TidsbestillingHarBehandlinger`(`TidsbestillingID`, `BehandlingID`) VALUES (?,?);";
+            PreparedStatement pstmt1 = connection.prepareStatement(sql);
             for(int i = 0; i<tidsbestilling.getBehandlinger().size();i++){
-                pstmt.setInt(1,tidsbestilling.getId());
-                pstmt.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
+                pstmt1.setInt(1,tidsbestilling.getId());
+                pstmt1.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
             }
+
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -197,13 +199,20 @@ public class MySqlConnection {
         return tider;
     }
 
-    public ArrayList<String> getAlleMedarbejderBrugernavne(){
-        ArrayList<String> medarbejdere = new ArrayList<>();
+    public ArrayList<Bruger> getAlleMedarbejdere(){
+        ArrayList<Bruger> medarbejdere = new ArrayList<>();
         String sql ="SELECT * FROM `Bruger` WHERE Rolle = 2;";
         try (Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-               medarbejdere.add(rs.getString("Brugernavn"));
+                Bruger bruger = new Bruger();
+                bruger.setId(rs.getInt("Id"));
+                bruger.setBrugernavn(rs.getString("Brugernavn"));
+                bruger.setMobil(rs.getString("Telefonnummer"));
+                bruger.setEmail(rs.getString("Email"));
+                bruger.setRolle(rs.getInt("Rolle"));
+                medarbejdere.add(bruger);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

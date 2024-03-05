@@ -6,7 +6,7 @@ public class Bruger {
     private String password;
     private String email;
     private String mobil;
-    private String rolle;
+    private int rolle;
 
     public int getId() {
         return Id;
@@ -53,11 +53,11 @@ public class Bruger {
         this.brugernavn = brugernavn;
     }
 
-    public String getRolle() {
+    public int getRolle() {
         return rolle;
     }
 
-    public void setRolle(String rolle) {
+    public void setRolle(int rolle) {
         this.rolle = rolle;
     }
 }

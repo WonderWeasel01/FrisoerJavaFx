@@ -18,9 +18,6 @@ import java.sql.SQLException;
 public class LoginController {
     private UseCase UC = new UseCase();
 
-
-
-
     @FXML
     TextField userLogin;
     @FXML
@@ -34,34 +31,23 @@ public class LoginController {
 
 
     @FXML
-    private void initialize() {
-
-    }
-
-    @FXML
     private void LoginButtonAction(ActionEvent event) throws IOException, SQLException {
         App m = new App();
 
-        Bruger bruger;
-        bruger = UC.login(userLogin.getText(),kodeLogin.getText());
-        String rolle = bruger.getRolle();
-        System.out.println(rolle);
+        Bruger bruger = UC.login(userLogin.getText(),kodeLogin.getText());
+        int rolle = bruger.getRolle();
 
         //Skifter til forskellige startsider baseret på brugerens rolle
         switch (rolle) {
-            case null:
-                //Ingen rolle fundet
-                System.out.println("Forkert password");
-                m.changeScene("FXML/StartSideKunde.fxml");
-                break;
-            case "Admin":
+            case 1:
                 m.changeScene("FXML/StartSideAdmin.fxml");
                 break;
-            case "Medarbejder":
+            case 2:
                 m.changeScene("FXML/StartSideMedarbejder.fxml");
                 break;
-            case "Kunde":
+            case 3:
                 m.changeScene("FXML/StartSideKunde.fxml");
+                System.out.println(bruger);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + bruger.getRolle());
