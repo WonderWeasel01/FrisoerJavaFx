@@ -116,15 +116,12 @@ public class BookingsController {
                 ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
                 comboBoxTider.setItems(list);
             }
-
         } else {
             comboBoxTider.getSelectionModel().clearSelection();
             UC.fjernTidspunktFraTidsbestilling();
             UC.fjernBehandlingFraTidsbestilling(5);
             if (datePicker.getValue() != null && comboBoxMedarbejdere.getValue() != null) {
-                ArrayList<LocalTime> ledigeTider = UC.ledigeTider();
-                ObservableList<LocalTime> list = FXCollections.observableArrayList(ledigeTider);
-                comboBoxTider.setItems(list);
+                setComboBoxTider();
             }
         }
     }

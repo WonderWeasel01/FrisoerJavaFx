@@ -255,6 +255,30 @@ public class MySqlConnection {
         }
         return tidbestillinger;
     }
+    public ArrayList<Tidsbestilling> getTidsBestillingAdmin(String brugernavn) {
+        ArrayList<Tidsbestilling> tidbestillinger = new ArrayList<>();
+        Bruger bruger = getBruger(brugernavn);
+            try {
+                String sql = "SELECT * FROM `Tidsbestillinger` WHERE BrugerID = " + bruger.getId() + " or MedarbejderID = " + bruger.getId() + ";";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    // Process and print results
+                    // Example:
+                    Tidsbestilling tb = new Tidsbestilling();
+                    tb.setId(resultSet.getInt("TidsbestillingID"));
+                    tb.setDato(resultSet.getDate("Dato").toLocalDate());
+                    tb.setStartTidspunkt(resultSet.getTime("StartTidspunkt"));
+                    tb.setSlutTidspunkt(resultSet.getTime("SlutTidspunkt"));
+                    tb.setKundeID(resultSet.getInt("BrugerID"));
+                    tb.setMedarbejderID(resultSet.getInt("MedarbejderID"));
+                    tidbestillinger.add(tb);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return tidbestillinger;
+    }
 
 
     // Method to verify a password against its hash

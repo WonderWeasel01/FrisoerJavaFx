@@ -20,18 +20,10 @@ public class UseCase {
     public Tidsbestilling tidsbestilling = new Tidsbestilling();
 
     public static void main(String[] args) {
-
-        UseCase uc = new UseCase();
-        uc.tilfoejBehandlingTilTidsbestilling(2);
-        uc.fjernBehandlingFraTidsbestilling(2);
-        System.out.println(uc.tidsbestilling.getBehandlinger());
-
     }
 
 
     public void opretBruger() {
-
-
     }
 
     public Bruger login(String brugernavn, String password) throws SQLException, IOException {
@@ -52,6 +44,8 @@ public class UseCase {
         this.bruger = null;
         System.out.println("Log ud succesful\nBruger: " + bruger);
     }
+
+
 
 
 
@@ -185,5 +179,10 @@ public class UseCase {
     public void getTidsbestillinger(LocalDate date){
         ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(date);
         System.out.println("Tidsbestillinger: " + tb);
+    }
+    public ArrayList<Tidsbestilling> getTidsbestillingerAdmin(String brugernavn){
+        ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(brugernavn);
+        System.out.println("Tidsbestillinger: " + tb);
+        return tb;
     }
 }

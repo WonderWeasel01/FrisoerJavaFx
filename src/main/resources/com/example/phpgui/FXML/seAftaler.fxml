@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.SeAftalerController">
+   <children>
+      <TableView fx:id="tv" layoutY="7.0" prefHeight="394.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="110.0" text="TidsbestillingID" />
+          <TableColumn prefWidth="71.0" text="Dato" />
+            <TableColumn prefWidth="124.0" text="Start Tidspunkt" />
+            <TableColumn prefWidth="101.0" text="Slut Tidspunkt" />
+            <TableColumn prefWidth="85.0" text="BrugerID" />
+            <TableColumn prefWidth="108.0" text="MedarbejderID" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,18 +1,20 @@
 package com.example.phpgui.Controller;
 
 import com.example.phpgui.App;
+import com.example.phpgui.Objects.Tidsbestilling;
 import com.example.phpgui.Utils.UseCase;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class KalenderAdminController {
-
-
 
     @FXML
     DatePicker adminKalender;
@@ -20,8 +22,22 @@ public class KalenderAdminController {
     HBox hjemButton;
     @FXML
     HBox prislisteButton;
+    @FXML
+    Button seAftaler;
+    @FXML
+    TextField indtastBrugernavn;
+
 
     private UseCase UC = new UseCase();
+
+    @FXML
+    private void seAftalerClick(ActionEvent event) throws IOException {
+        App m = new App();
+        String brugernavn = indtastBrugernavn.getText();
+        SeAftalerController aftalerController = new SeAftalerController();
+        aftalerController.seAftaler(brugernavn);
+        m.changeScene("FXML/seAftaler.fxml");
+    }
 
 
     @FXML
