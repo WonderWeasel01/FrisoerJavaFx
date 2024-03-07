@@ -1,5 +1,6 @@
 package com.example.phpgui.Controller;
 
+import com.example.phpgui.App;
 import com.example.phpgui.Objects.Tidsbestilling;
 import com.example.phpgui.Utils.UseCase;
 import javafx.collections.FXCollections;
@@ -9,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -42,8 +46,11 @@ public class SeAftalerKundeController implements Initializable {
 
     @FXML
     Label rettesIDLabel;
+    @FXML
+    HBox hjemButton;
 
-
+    @FXML
+    HBox bookingsButton;
 
 
 
@@ -73,6 +80,22 @@ public class SeAftalerKundeController implements Initializable {
         tb.clear();
     }
 
+    @FXML
+    private void skiftTilBookings(MouseEvent event) throws IOException {
+        App m = new App();
+        m.changeScene("FXML/Bookings.fxml");
+    }
+    @FXML
+    private void skiftTilHjem(MouseEvent event) throws IOException {
+        App m = new App();
+        m.changeScene("FXML/StartSideKunde.fxml");
+    }
 
+    @FXML
+    private void logUd(MouseEvent event) throws IOException {
+        UC.logUd();
+        App m = new App();
+        m.changeScene("FXML/Login.fxml");
+    }
 
 }
