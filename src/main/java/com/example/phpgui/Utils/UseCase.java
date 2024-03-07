@@ -62,11 +62,12 @@ public class UseCase {
         System.out.println("Tidspunkt fjernet: \n" + "Start tidspunkt: " + tidsbestilling.getStartTidspunkt() + "   Slut tidspunkt: " + tidsbestilling.getSlutTidspunkt());
     }
 
-    public void tilfoejBehandlingTilTidsbestilling(int behandlingID) {
+    public Boolean tilfoejBehandlingTilTidsbestilling(int behandlingID) {
         Behandling behandling;
         behandling = mysqlConnection.getBehandling(behandlingID);
         this.tidsbestilling.getBehandlinger().add(behandling);
         System.out.println("Behandlinger tilføjet: " + tidsbestilling.getBehandlinger());
+        return true;
     }
 
     public void fjernBehandlingFraTidsbestilling(int behandlingID){
@@ -74,9 +75,10 @@ public class UseCase {
         System.out.println("Behandling fjernet: " + tidsbestilling.getBehandlinger());
     }
 
-    public void tilfoejDatoTilTidsbestilling(LocalDate dato) {
+    public Boolean tilfoejDatoTilTidsbestilling(LocalDate dato) {
         this.tidsbestilling.setDato(dato);
         System.out.println("Dato tilføjet til tidsbestilling: " + tidsbestilling.getDato());
+        return true;
     }
 
     public void tilfoejBrugerIDtilTidsbestilling(){
@@ -93,7 +95,7 @@ public class UseCase {
 
     }
 
-    public void tilfoejTidspunktTilTidsbestilling(LocalTime tidspunkt){
+    public Boolean tilfoejTidspunktTilTidsbestilling(LocalTime tidspunkt){
         Time startTidspunkt = Time.valueOf(tidspunkt);
         this.tidsbestilling.setStartTidspunkt(startTidspunkt);
         System.out.println("Starttidspunkt tilføjet: " + startTidspunkt);
@@ -109,6 +111,7 @@ public class UseCase {
         this.tidsbestilling.setSlutTidspunkt(slutTidspunkt);
         System.out.println("Sluttidspunkt tilføjet: " + slutTidspunkt);
 
+        return true;
     }
 
     public ArrayList<LocalTime> ledigeTider() {

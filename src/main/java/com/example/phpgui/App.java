@@ -20,7 +20,6 @@ public class App extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public void changeScene(String fxml) throws IOException {
