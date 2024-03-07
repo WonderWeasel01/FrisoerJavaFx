@@ -196,8 +196,6 @@ public class BookingsController {
             }
         }
     }
-
-
     @FXML
     private void comboBoxMedarbejderSelect(ActionEvent event){
         String s = comboBoxMedarbejdere.getSelectionModel().getSelectedItem().toString();
