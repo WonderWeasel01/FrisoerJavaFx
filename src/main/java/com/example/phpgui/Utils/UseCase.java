@@ -240,4 +240,10 @@ public class UseCase {
         return tb;
     }
 
+    public void opdaterTidsbestilling(Tidsbestilling tidsbestilling){
+        if(mysqlConnection.opdaterTidsbestilling(tidsbestilling)){
+            System.out.println("Tidsbestilling opdateret!");
+        } else System.out.println("Tidsbestilling ikke opdateret. Der er sket en fejl");
+    }
+
 }

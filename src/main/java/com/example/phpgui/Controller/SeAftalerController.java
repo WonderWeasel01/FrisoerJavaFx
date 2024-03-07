@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.controlsfx.control.action.Action;
 
 import java.net.URL;
 import java.sql.Time;
@@ -50,6 +51,9 @@ public class SeAftalerController implements Initializable {
     @FXML
     ComboBox comboBoxMedarbejdere;
     @FXML
+    Button opdaterButton;
+
+    @FXML
     ComboBox comboBoxTider;
     Tidsbestilling tb = new Tidsbestilling();
 
@@ -57,6 +61,12 @@ public class SeAftalerController implements Initializable {
 
 
     public static String findBrugernavn;
+
+    @FXML
+    private void opdaterButton(ActionEvent event){
+        UC.opdaterTidsbestilling(tb);
+        opdaterTabel();
+    }
 
     public static String getFindBrugernavn() {
         return findBrugernavn;
@@ -71,11 +81,11 @@ public class SeAftalerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        opdaterTabel();
+    }
+    public void opdaterTabel(){
         ArrayList<Tidsbestilling> tb = UC.getTidsbestillingerAdmin(findBrugernavn);
-        System.out.println(tb);
-
         ObservableList<Tidsbestilling> list = FXCollections.observableArrayList(tb);
-        System.out.println(list);
 
         id.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, Integer>("id"));
         dato.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, LocalDate>("dato"));
@@ -84,6 +94,7 @@ public class SeAftalerController implements Initializable {
         brugerID.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, Integer>("kundeID"));
         medarbejderID.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, Integer>("medarbejderID"));
         tv.setItems(list);
+        tb.clear();
     }
 
     @FXML

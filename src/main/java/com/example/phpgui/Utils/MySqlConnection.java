@@ -109,7 +109,6 @@ public class MySqlConnection {
     public Bruger getBruger(String brugernavn){
         Bruger bruger = new Bruger();
         bruger.setBrugernavn(brugernavn);
-        System.out.println(brugernavn);
 
         String sql = "SELECT * FROM `Bruger` inner JOIN Roller on Bruger.Rolle = Roller.rolleID WHERE Brugernavn = '" + brugernavn +"';";
         try (Statement stmt = connection.createStatement()) {
@@ -123,7 +122,6 @@ public class MySqlConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(bruger);
         return bruger;
     }
 
@@ -150,7 +148,6 @@ public class MySqlConnection {
             pstmt.setInt(4, tidsbestilling.getKundeID());
             pstmt.setInt(5, tidsbestilling.getMedarbejderID());
             pstmt.execute();
-
 
             ResultSet rs = pstmt.getGeneratedKeys();
             int tidsbestillingID = 0;
@@ -219,12 +216,29 @@ public class MySqlConnection {
                 bruger.setEmail(rs.getString("Email"));
                 bruger.setRolle(rs.getInt("Rolle"));
                 medarbejdere.add(bruger);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return medarbejdere;
+    }
+
+    public boolean opdaterTidsbestilling(Tidsbestilling tidsbestilling){
+        String sql = "UPDATE `Tidsbestillinger` SET `Dato`=?, `StartTidspunkt`=?, `SlutTidspunkt`=?, `BrugerID`=?, `MedarbejderID`=? WHERE `TidsbestillingID`=?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setObject(1, tidsbestilling.getDato());
+            pstmt.setObject(2, tidsbestilling.getStartTidspunkt());
+            pstmt.setObject(3, tidsbestilling.getSlutTidspunkt());
+            pstmt.setInt(4, tidsbestilling.getKundeID());
+            pstmt.setInt(5, tidsbestilling.getMedarbejderID());
+            pstmt.setInt(6, tidsbestilling.getId());
+
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
@@ -285,10 +299,11 @@ public class MySqlConnection {
 
 
 
+
+
     public ArrayList<Tidsbestilling> getTidsBestillingAdmin(String brugernavn) {
         ArrayList<Tidsbestilling> tidbestillinger = new ArrayList<>();
         Bruger bruger = getBruger(brugernavn);
-        System.out.println(bruger);
             try {
                 String sql = "SELECT * FROM `Tidsbestillinger` WHERE BrugerID = " + bruger.getId() + " or MedarbejderID = " + bruger.getId() + ";";
                 PreparedStatement statement = connection.prepareStatement(sql);
