@@ -34,8 +34,7 @@ public class KalenderAdminController {
     private void seAftalerClick(ActionEvent event) throws IOException {
         App m = new App();
         String brugernavn = indtastBrugernavn.getText();
-        SeAftalerController aftalerController = new SeAftalerController();
-        aftalerController.seAftaler(brugernavn);
+        SeAftalerController.setFindBrugernavn(brugernavn);
         m.changeScene("FXML/seAftaler.fxml");
     }
 
@@ -50,7 +49,6 @@ public class KalenderAdminController {
     @FXML
     private void adminSeKalender(MouseEvent event)throws  IOException{
         UC.getTidsbestillinger(adminKalender.getValue());
-
     }
 
     @FXML

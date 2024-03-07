@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.SeAftalerController">
+<AnchorPane prefHeight="381.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.SeAftalerController">
    <children>
-      <TableView fx:id="tv" layoutY="7.0" prefHeight="394.0" prefWidth="600.0">
+      <AnchorPane layoutY="2.0" prefHeight="377.0" prefWidth="244.0">
+         <children>
+            <Button fx:id="retTidsbestilling" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" onAction="#retTidsbestilling" text="Ret tidsbestilling" />
+            <TextField fx:id="tidsbestillingID" layoutX="54.0" layoutY="37.0" promptText="Indtast TidsbestillingID" text="TidsbestillingID" />
+            <Button fx:id="aflysTid" layoutX="144.0" layoutY="70.0" mnemonicParsing="false" text="Aflys tid" />
+            <DatePicker fx:id="datePicker" layoutX="24.0" layoutY="182.0" onAction="#datePicker" prefHeight="25.0" prefWidth="197.0" promptText="Vælg dato" />
+            <ComboBox fx:id="comboBoxTider" layoutX="41.0" layoutY="261.0" onAction="#comboBoxTiderSelect" prefWidth="150.0" promptText="Ny tid" />
+            <ComboBox fx:id="comboBoxMedarbejdere" layoutX="41.0" layoutY="222.0" onAction="#comboBoxMedarbejderSelect" prefWidth="150.0" promptText="Medarbejder" />
+            <Label fx:id="rettesLabel" layoutX="24.0" layoutY="121.0" prefHeight="43.0" prefWidth="157.0" text="Tidsbestilling der rettes: ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="rettesIDLabel" layoutX="189.0" layoutY="134.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tv" layoutX="241.0" prefHeight="377.0" prefWidth="494.0">
         <columns>
-          <TableColumn prefWidth="110.0" text="TidsbestillingID" />
-          <TableColumn prefWidth="71.0" text="Dato" />
-            <TableColumn prefWidth="124.0" text="Start Tidspunkt" />
-            <TableColumn prefWidth="101.0" text="Slut Tidspunkt" />
-            <TableColumn prefWidth="85.0" text="BrugerID" />
-            <TableColumn prefWidth="108.0" text="MedarbejderID" />
+          <TableColumn fx:id="id" prefWidth="95.0" text="TidsbestillingID" />
+          <TableColumn fx:id="dato" prefWidth="45.0" text="Dato" />
+            <TableColumn fx:id="startTidspunkt" prefWidth="99.0" text="Start Tidspunkt" />
+            <TableColumn fx:id="slutTidspunkt" prefWidth="102.0" text="Slut Tidspunkt" />
+            <TableColumn fx:id="brugerID" prefWidth="57.0" text="BrugerID" />
+            <TableColumn fx:id="medarbejderID" prefWidth="93.0" text="MedarbejderID" />
         </columns>
       </TableView>
    </children>

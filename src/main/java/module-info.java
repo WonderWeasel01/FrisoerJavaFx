@@ -10,4 +10,5 @@ module com.example.phpgui {
     exports com.example.phpgui;
     exports com.example.phpgui.Controller;
     opens com.example.phpgui.Controller to javafx.fxml;
+    opens com.example.phpgui.Objects to javafx.base;
 }

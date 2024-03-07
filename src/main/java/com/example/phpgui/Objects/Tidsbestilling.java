@@ -13,7 +13,6 @@ import java.util.*;
 
 public class Tidsbestilling {
     private int id;
-
     private ArrayList<Behandling> behandlinger = new ArrayList<>();
     private Time startTidspunkt;
     private Time slutTidspunkt;
@@ -100,7 +99,6 @@ public class Tidsbestilling {
         this.behandlinger = behandlinger;
     }
 
-
     public int getId() {
         return id;
     }
@@ -108,7 +106,6 @@ public class Tidsbestilling {
     public void setId(int id) {
         this.id = id;
     }
-
 
 /*
     //Metode til at se om tiden er i dag, og hvornår i dag.

@@ -109,6 +109,7 @@ public class MySqlConnection {
     public Bruger getBruger(String brugernavn){
         Bruger bruger = new Bruger();
         bruger.setBrugernavn(brugernavn);
+        System.out.println(brugernavn);
 
         String sql = "SELECT * FROM `Bruger` inner JOIN Roller on Bruger.Rolle = Roller.rolleID WHERE Brugernavn = '" + brugernavn +"';";
         try (Statement stmt = connection.createStatement()) {
@@ -122,6 +123,7 @@ public class MySqlConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(bruger);
         return bruger;
     }
 
@@ -255,16 +257,43 @@ public class MySqlConnection {
         }
         return tidbestillinger;
     }
+    public Tidsbestilling getTidsBestillingAdmin(int tidsbestillingID) {
+        Tidsbestilling tb = new Tidsbestilling();
+        ArrayList<Behandling> behandlinger = new ArrayList<>();
+            try {
+                String sql = "SELECT Tidsbestillinger.TidsbestillingID, Dato, StartTidspunkt, SlutTidspunkt, BrugerID, MedarbejderID, TidsbestillingHarBehandlinger.BehandlingID   " +
+                        "FROM `Tidsbestillinger` inner join TidsbestillingHarBehandlinger on Tidsbestillinger.TidsbestillingID = " +
+                        "TidsbestillingHarBehandlinger.TidsbestillingID Where Tidsbestillinger.TidsbestillingID = " + tidsbestillingID + ";";
+
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    tb.setId(resultSet.getInt("TidsbestillingID"));
+                    tb.setDato(resultSet.getDate("Dato").toLocalDate());
+                    tb.setStartTidspunkt(resultSet.getTime("StartTidspunkt"));
+                    tb.setSlutTidspunkt(resultSet.getTime("SlutTidspunkt"));
+                    tb.setKundeID(resultSet.getInt("BrugerID"));
+                    tb.setMedarbejderID(resultSet.getInt("MedarbejderID"));
+                    behandlinger.add(getBehandling(resultSet.getInt("BehandlingID")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            tb.setBehandlinger(behandlinger);
+            return tb;
+        }
+
+
+
     public ArrayList<Tidsbestilling> getTidsBestillingAdmin(String brugernavn) {
         ArrayList<Tidsbestilling> tidbestillinger = new ArrayList<>();
         Bruger bruger = getBruger(brugernavn);
+        System.out.println(bruger);
             try {
                 String sql = "SELECT * FROM `Tidsbestillinger` WHERE BrugerID = " + bruger.getId() + " or MedarbejderID = " + bruger.getId() + ";";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    // Process and print results
-                    // Example:
                     Tidsbestilling tb = new Tidsbestilling();
                     tb.setId(resultSet.getInt("TidsbestillingID"));
                     tb.setDato(resultSet.getDate("Dato").toLocalDate());

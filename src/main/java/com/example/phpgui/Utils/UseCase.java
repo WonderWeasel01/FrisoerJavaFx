@@ -1,6 +1,5 @@
 package com.example.phpgui.Utils;
 
-import com.example.phpgui.App;
 import com.example.phpgui.Objects.Behandling;
 import com.example.phpgui.Objects.Bruger;
 import com.example.phpgui.Objects.Tidsbestilling;
@@ -20,6 +19,7 @@ public class UseCase {
     public Tidsbestilling tidsbestilling = new Tidsbestilling();
 
     public static void main(String[] args) {
+
     }
 
 
@@ -44,10 +44,6 @@ public class UseCase {
         this.bruger = null;
         System.out.println("Log ud succesful\nBruger: " + bruger);
     }
-
-
-
-
 
     public Boolean opretTidsbestilling() {
         if(mysqlConnection.opretTidsbestilling(this.tidsbestilling)){
@@ -167,6 +163,56 @@ public class UseCase {
         System.out.println("Ledige tider: " + ledigeTider);
         return ledigeTider;
     }
+    public ArrayList<LocalTime> ledigeTider(Time behandlingsvarighed, LocalDate date, int medarbejderID) {
+        ArrayList<Time> bestilteTider = mysqlConnection.getTider(date, medarbejderID);
+        ArrayList<LocalTime> andreTidsbestillinger = new ArrayList<>();
+        ArrayList<LocalTime> ledigeTider = new ArrayList<>(100);
+        LocalTime aabningstid = LocalTime.of(8, 0, 0);
+        LocalTime lukkeTid = LocalTime.of(21, 0, 0);
+
+        //Tilføjer åbningstid til arrayet så vi har en start tid at kontrollerer fra.
+        while (aabningstid.isBefore(lukkeTid)) {
+            ledigeTider.add(aabningstid);
+            aabningstid = aabningstid.plusMinutes(30);
+        }
+
+        //Konvertere til localtime i stedet for time så vi kan beregne med tiderne.
+        for (int i = 0; i < bestilteTider.size(); i++) {
+            andreTidsbestillinger.add(bestilteTider.get(i).toLocalTime());
+        }
+        System.out.println("Aftaler: " + andreTidsbestillinger + "\n");
+
+        Time bv = behandlingsvarighed;
+        LocalTime behandlingsVarighed = bv.toLocalTime();
+        System.out.println("Behandlingsvarighed: " + behandlingsVarighed);
+
+        // Kontrollerer om der er plads til at sætte den valgte aftale ind før den næste aftale starter.
+        ArrayList<LocalTime> tiderDerSkalFjernes = new ArrayList<>();
+        for (int i = ledigeTider.size() - 1; i >= 0; i--) {
+            LocalTime minTBSlut = ledigeTider.get(i).plusHours(behandlingsVarighed.getHour()).plusMinutes(behandlingsVarighed.getMinute()).plusSeconds(behandlingsVarighed.getSecond());
+
+            for (int j = 0; j < andreTidsbestillinger.size(); j += 2) {
+                LocalTime andreTBStart = andreTidsbestillinger.get(j);
+                LocalTime andreTBSlut = andreTidsbestillinger.get(j + 1);
+
+                // Kontrollerer om ens tid ville ramme en anden booket tid
+                if ((andreTBStart.isBefore(minTBSlut) && minTBSlut.isBefore(andreTBSlut)) ||
+                        (andreTBStart.isBefore(ledigeTider.get(i)) && andreTBSlut.isAfter(ledigeTider.get(i)) || andreTBSlut.isAfter(ledigeTider.get(i)) && minTBSlut.isAfter(andreTBStart))) {
+                    tiderDerSkalFjernes.add(ledigeTider.get(i));
+                    break;
+                }
+            }
+
+            // Kontrollere om aftalen overskrider lukketiden;
+            if (minTBSlut.isAfter(lukkeTid)) {
+                tiderDerSkalFjernes.add(ledigeTider.get(i));
+            }
+        }
+        System.out.println("Tider der skal fjernes: " + tiderDerSkalFjernes);
+        ledigeTider.removeAll(tiderDerSkalFjernes);
+        System.out.println("Ledige tider: " + ledigeTider);
+        return ledigeTider;
+    }
 
     public ArrayList<String> getMedarbejderBrugernavne () {
         ArrayList<String> medarbejderBrugernavne = new ArrayList<>();
@@ -176,13 +222,22 @@ public class UseCase {
         return medarbejderBrugernavne;
     }
 
+    public int getMedarbejderID(String brugernavn){
+        int medarbejderID = mysqlConnection.getMedarbejderId(brugernavn);
+        return medarbejderID;
+    }
+
     public void getTidsbestillinger(LocalDate date){
         ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(date);
-        System.out.println("Tidsbestillinger: " + tb);
     }
-    public ArrayList<Tidsbestilling> getTidsbestillingerAdmin(String brugernavn){
-        ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(brugernavn);
+    public Tidsbestilling getTidsbestilling(int tidsbestillingID){
+        Tidsbestilling tb = mysqlConnection.getTidsBestillingAdmin(tidsbestillingID);
         System.out.println("Tidsbestillinger: " + tb);
         return tb;
     }
+    public ArrayList<Tidsbestilling> getTidsbestillingerAdmin(String brugernavn){
+        ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(brugernavn);
+        return tb;
+    }
+
 }

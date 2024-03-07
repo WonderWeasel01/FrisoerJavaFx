@@ -5,17 +5,20 @@ import com.example.phpgui.Utils.UseCase;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class SeAftalerController {
+public class SeAftalerController implements Initializable {
 
     UseCase UC = new UseCase();
     @FXML
@@ -32,16 +35,47 @@ public class SeAftalerController {
     TableColumn<Tidsbestilling, Integer> brugerID;
     @FXML
     TableColumn<Tidsbestilling, Integer> medarbejderID;
+    @FXML
+    TextField tidsbestillingID;
+    @FXML
+    Button retTidsbestilling;
+    @FXML
+    Button aflysTid;
+    @FXML
+    Label rettesLabel;
+    @FXML
+    Label rettesIDLabel;
+    @FXML
+    DatePicker datePicker;
+    @FXML
+    ComboBox comboBoxMedarbejdere;
+    @FXML
+    ComboBox comboBoxTider;
+    Tidsbestilling tb = new Tidsbestilling();
 
 
 
 
+    public static String findBrugernavn;
+
+    public static String getFindBrugernavn() {
+        return findBrugernavn;
+    }
+
+    public static void setFindBrugernavn(String findBrugernavn) {
+        System.out.println(findBrugernavn);
+        SeAftalerController.findBrugernavn = findBrugernavn;
+    }
 
 
-    public void seAftaler(String brugernavn){
-        ArrayList<Tidsbestilling> tb = UC.getTidsbestillingerAdmin(brugernavn);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<Tidsbestilling> tb = UC.getTidsbestillingerAdmin(findBrugernavn);
         System.out.println(tb);
+
         ObservableList<Tidsbestilling> list = FXCollections.observableArrayList(tb);
+        System.out.println(list);
 
         id.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, Integer>("id"));
         dato.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, LocalDate>("dato"));
@@ -51,6 +85,50 @@ public class SeAftalerController {
         medarbejderID.setCellValueFactory(new PropertyValueFactory<Tidsbestilling, Integer>("medarbejderID"));
         tv.setItems(list);
     }
+
+    @FXML
+    private void retTidsbestilling(ActionEvent event){
+        int tidsbestillingID = Integer.parseInt(this.tidsbestillingID.getText());
+        tb = UC.getTidsbestilling(tidsbestillingID);
+        rettesIDLabel.setText(Integer.toString(tb.getId()));
+    }
+    @FXML
+    private void datePicker(ActionEvent evt){
+        tb.setDato(datePicker.getValue());
+        ArrayList<String> medarbejdere = UC.getMedarbejderBrugernavne();
+        ObservableList<String> list = FXCollections.observableArrayList(medarbejdere);
+        if(comboBoxMedarbejdere.getValue() == null){
+            comboBoxMedarbejdere.setItems(list);
+        } else{
+            setComboBoxTider();
+        }
+    }
+    @FXML
+    private void comboBoxMedarbejderSelect(ActionEvent event){
+        String s = comboBoxMedarbejdere.getSelectionModel().getSelectedItem().toString();
+        int medarbejderID = UC.getMedarbejderID(s);
+        tb.setMedarbejderID(medarbejderID);
+        setComboBoxTider();
+    }
+    public void setComboBoxTider(){
+        int medarbejderID = UC.getMedarbejderID(comboBoxMedarbejdere.getValue().toString());
+        ArrayList<LocalTime> ledigeTider = UC.ledigeTider(tb.getBehandlingsVarigheder(),datePicker.getValue(),medarbejderID);
+        ObservableList<LocalTime> list1 = FXCollections.observableArrayList(ledigeTider);
+        comboBoxTider.setItems(list1);
+    }
+    @FXML
+    private void comboBoxTiderSelect(){
+        if (comboBoxTider.getValue() != null){
+            LocalTime startTidspunkt = (LocalTime) comboBoxTider.getValue();
+            Time behandlingsVarighed = tb.getBehandlingsVarigheder();
+            LocalTime bv = behandlingsVarighed.toLocalTime();
+            LocalTime slutTidspunkt = startTidspunkt.plusHours(bv.getHour()).plusMinutes(bv.getMinute()).plusSeconds(bv.getSecond());
+
+            tb.setStartTidspunkt(Time.valueOf(startTidspunkt));
+            tb.setSlutTidspunkt(Time.valueOf(slutTidspunkt));
+        }
+    }
+
 
 
 }

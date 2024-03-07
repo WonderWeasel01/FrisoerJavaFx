@@ -211,7 +211,6 @@ public class BookingsController {
             LocalTime startTidspunkt = (LocalTime) comboBoxTider.getValue();
             UC.tilfoejTidspunktTilTidsbestilling(startTidspunkt);
         }
-
     }
 
     @FXML

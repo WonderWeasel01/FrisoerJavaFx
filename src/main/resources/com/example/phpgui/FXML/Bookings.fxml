@@ -145,9 +145,9 @@
             <HBox alignment="CENTER" prefHeight="67.0" prefWidth="435.0">
                <children>
                   <DatePicker fx:id="datePicker" onAction="#datePicker" prefHeight="25.0" prefWidth="197.0" promptText="Vælg dato" />
-                  <ComboBox fx:id="comboBoxMedarbejdere" onAction="#comboBoxMedarbejderSelect" prefWidth="150.0" />
+                  <ComboBox fx:id="comboBoxMedarbejdere" onAction="#comboBoxMedarbejderSelect" prefWidth="150.0" promptText="Medarbejder" />
                </children></HBox>
-            <ComboBox fx:id="comboBoxTider" onAction="#ComboBoxTiderSelect" prefWidth="150.0" />
+            <ComboBox fx:id="comboBoxTider" onAction="#ComboBoxTiderSelect" prefWidth="150.0" promptText="Tidspunkt" />
             <Button fx:id="opretTidsbestilling" mnemonicParsing="false" onAction="#onOpretTidsbestillingClick" text="Button" />
          </children></VBox>
    </children>
