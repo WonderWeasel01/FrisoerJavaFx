@@ -26,7 +26,7 @@
                </font>
             </Label>
             <Label fx:id="rettesIDLabel" layoutX="189.0" layoutY="134.0" />
-            <Button fx:id="opdaterButton" layoutX="56.0" layoutY="317.0" mnemonicParsing="false" text="Opdater Tidsbestilling" />
+            <Button fx:id="opdaterButton" layoutX="56.0" layoutY="317.0" mnemonicParsing="false" onAction="#opdaterButton" text="Opdater Tidsbestilling" />
          </children>
       </AnchorPane>
       <TableView fx:id="tv" layoutX="241.0" prefHeight="377.0" prefWidth="494.0">
