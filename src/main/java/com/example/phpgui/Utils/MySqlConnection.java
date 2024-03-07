@@ -105,6 +105,45 @@ public class MySqlConnection {
         return -1;
     }
 
+    public boolean aflysTidsbestilling(int tidsbestillingID){
+        Tidsbestilling tidsbestilling = getTidsBestillingAdmin(tidsbestillingID);
+        String sql = "INSERT INTO `TidsbestillingerAflyst`(`TidsbestillingID`,`Dato`, `StartTidspunkt`, `SlutTidspunkt`, `BrugerID`, `MedarbejderID`) VALUES (?,?,?,?,?,?);";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setInt(1,tidsbestilling.getId());
+            pstmt.setObject(2, tidsbestilling.getDato());
+            pstmt.setObject(3, tidsbestilling.getStartTidspunkt());
+            pstmt.setObject(4,tidsbestilling.getSlutTidspunkt());
+            pstmt.setInt(5, tidsbestilling.getKundeID());
+            pstmt.setInt(6, tidsbestilling.getMedarbejderID());
+            pstmt.execute();
+
+            sql = "INSERT INTO `TidsbestillingerHarBehandlingerAflyst`(`TidsbestillingID`, `BehandlingID`) VALUES (?,?);";
+            try(PreparedStatement pstmt1 = connection.prepareStatement(sql)){
+                for(int i = 0; i<tidsbestilling.getBehandlinger().size();i++){
+                    pstmt1.setInt(1, tidsbestilling.getId());
+                    pstmt1.setInt(2, tidsbestilling.getBehandlinger().get(i).getId());
+
+                    pstmt1.execute();
+
+                    sql = "DELETE FROM TidsbestillingerAflyst\n" +
+                            "WHERE TidsbestillingerAflyst.Dato < DATE_SUB(NOW(), INTERVAL 5 YEAR);";
+                    try(PreparedStatement pstmt2 = connection.prepareStatement(sql)){
+                        pstmt2.execute();
+
+                        sql = "DELETE FROM `Tidsbestillinger` WHERE Tidsbestillinger.TidsbestillingID = " + tidsbestilling.getId();
+                        try(PreparedStatement ptsmt3 = connection.prepareStatement(sql)){
+                            ptsmt3.execute();
+                        }
+                    }
+                }
+            }
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } return false;
+    }
+
 
     public Bruger getBruger(String brugernavn){
         Bruger bruger = new Bruger();

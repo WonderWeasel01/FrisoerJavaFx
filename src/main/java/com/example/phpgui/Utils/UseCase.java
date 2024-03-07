@@ -240,6 +240,12 @@ public class UseCase {
         return tb;
     }
 
+    public void aflysTidsbestilling(int tidsbestillingID){
+        if(mysqlConnection.aflysTidsbestilling(tidsbestillingID)){
+            System.out.println("Tidsbestilling aflyst");
+        } else System.out.println("Der skete en fejl. Tidsbestilling ikke aflyst");
+    }
+
     public void opdaterTidsbestilling(Tidsbestilling tidsbestilling){
         if(mysqlConnection.opdaterTidsbestilling(tidsbestilling)){
             System.out.println("Tidsbestilling opdateret!");

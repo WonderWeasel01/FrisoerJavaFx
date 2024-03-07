@@ -62,10 +62,16 @@ public class SeAftalerController implements Initializable {
 
     public static String findBrugernavn;
 
+    public void aflysButton(ActionEvent event){
+        UC.aflysTidsbestilling(Integer.parseInt(tidsbestillingID.getText()));
+        opdaterTabel();
+    }
     @FXML
     private void opdaterButton(ActionEvent event){
         UC.opdaterTidsbestilling(tb);
         opdaterTabel();
+        tv.getSelectionModel().clearSelection();
+        setComboBoxTider();
     }
 
     public static String getFindBrugernavn() {

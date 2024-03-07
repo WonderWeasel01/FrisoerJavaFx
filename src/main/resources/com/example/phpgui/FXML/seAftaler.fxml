@@ -16,7 +16,7 @@
          <children>
             <Button fx:id="retTidsbestilling" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" onAction="#retTidsbestilling" text="Ret tidsbestilling" />
             <TextField fx:id="tidsbestillingID" layoutX="54.0" layoutY="37.0" promptText="Indtast TidsbestillingID" text="TidsbestillingID" />
-            <Button fx:id="aflysTid" layoutX="144.0" layoutY="70.0" mnemonicParsing="false" text="Aflys tid" />
+            <Button fx:id="aflysTid" layoutX="144.0" layoutY="70.0" mnemonicParsing="false" onAction="#aflysButton" text="Aflys tid" />
             <DatePicker fx:id="datePicker" layoutX="24.0" layoutY="182.0" onAction="#datePicker" prefHeight="25.0" prefWidth="197.0" promptText="Vælg dato" />
             <ComboBox fx:id="comboBoxTider" layoutX="41.0" layoutY="261.0" onAction="#comboBoxTiderSelect" prefWidth="150.0" promptText="Ny tid" />
             <ComboBox fx:id="comboBoxMedarbejdere" layoutX="41.0" layoutY="222.0" onAction="#comboBoxMedarbejderSelect" prefWidth="150.0" promptText="Medarbejder" />
