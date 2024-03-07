@@ -148,7 +148,6 @@ public class BookingsController {
             ObservableList<LocalTime> list1 = FXCollections.observableArrayList(ledigeTider);
             comboBoxTider.setItems(list1);
         }
-
     }
 
     @FXML
@@ -219,9 +218,6 @@ public class BookingsController {
             setComboBoxTider();
         }
     }
-
-
-
 
     @FXML
     private void logUd(MouseEvent event) throws IOException {

@@ -92,7 +92,6 @@ public class MySqlConnection {
     }
 
     public int getBrugerRolle(String brugernavn) throws SQLException {
-
         String sql = "SELECT Rolle FROM `Bruger` WHERE Brugernavn = '" + brugernavn +"';";
         try (Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);

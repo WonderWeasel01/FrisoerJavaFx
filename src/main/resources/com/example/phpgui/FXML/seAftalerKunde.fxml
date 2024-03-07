@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="381.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phpgui.Controller.SeAftalerKundeController">
+   <children>
+      <AnchorPane layoutY="2.0" prefHeight="377.0" prefWidth="244.0">
+         <children>
+            <TextField fx:id="tidsbestillingID" layoutX="48.0" layoutY="151.0" promptText="Indtast TidsbestillingID" text="TidsbestillingID" />
+            <Button fx:id="aflysTid" layoutX="93.0" layoutY="189.0" mnemonicParsing="false" onAction="#aflysButton" text="Aflys tid" />
+            <Label fx:id="rettesIDLabel" layoutX="189.0" layoutY="134.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tv" layoutX="241.0" prefHeight="377.0" prefWidth="494.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="95.0" text="TidsbestillingID" />
+          <TableColumn fx:id="dato" prefWidth="45.0" text="Dato" />
+            <TableColumn fx:id="startTidspunkt" prefWidth="99.0" text="Start Tidspunkt" />
+            <TableColumn fx:id="slutTidspunkt" prefWidth="102.0" text="Slut Tidspunkt" />
+            <TableColumn fx:id="brugerID" prefWidth="57.0" text="BrugerID" />
+            <TableColumn fx:id="medarbejderID" prefWidth="93.0" text="MedarbejderID" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -32,7 +32,8 @@ public class StartsideKundeController {
     @FXML
     private void skiftTilMineAftaler(MouseEvent event) throws IOException {
         App m = new App();
-        m.changeScene("FXML/MineAftaler.fxml");
+        SeAftalerKundeController.findBrugernavn = UseCase.bruger.getBrugernavn();
+        m.changeScene("FXML/seAftalerKunde.fxml");
     }
     @FXML
     private void onclick(ActionEvent event){
