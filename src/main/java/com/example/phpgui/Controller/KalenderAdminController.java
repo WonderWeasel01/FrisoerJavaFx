@@ -26,7 +26,8 @@ public class KalenderAdminController {
     Button seAftaler;
     @FXML
     TextField indtastBrugernavn;
-
+    @FXML
+    HBox seKalender;
 
     private UseCase UC = new UseCase();
 
@@ -37,7 +38,6 @@ public class KalenderAdminController {
         SeAftalerController.setFindBrugernavn(brugernavn);
         m.changeScene("FXML/seAftaler.fxml");
     }
-
 
     @FXML
     private void logUd(MouseEvent event) throws IOException {

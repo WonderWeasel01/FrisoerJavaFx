@@ -18,8 +18,6 @@ public class StartsideKundeController {
     @FXML
     HBox mineAftalerButton;
     UseCase UC;
-    @FXML
-    Button kunde;
 
 
 

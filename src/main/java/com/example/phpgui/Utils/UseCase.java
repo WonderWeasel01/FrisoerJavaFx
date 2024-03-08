@@ -232,6 +232,7 @@ public class UseCase {
 
     public void getTidsbestillinger(LocalDate date){
         ArrayList<Tidsbestilling> tb = mysqlConnection.getTidsBestillingAdmin(date);
+        System.out.println(tb);
     }
     public Tidsbestilling getTidsbestilling(int tidsbestillingID){
         Tidsbestilling tb = mysqlConnection.getTidsBestillingAdmin(tidsbestillingID);
